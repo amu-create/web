@@ -5,9 +5,9 @@
   <title>Cyberpunk Web Page</title>
   <style>
     body {
-      background-color: #0f0f0f; /* 딥블랙 배경 */
-      color: #00ffe7; /* 네온 블루 텍스트 */
-      font-family: 'Orbitron', sans-serif; /* 미래형 폰트 */
+      background-color: #0f0f0f;
+      color: #00ffe7;
+      font-family: 'Orbitron', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -20,7 +20,7 @@
     h1 {
       font-size: 4rem;
       font-weight: bolder;
-      color: #ff00c8; /* 핑크 네온 컬러 */
+      color: #ff00c8;
       text-shadow: 0 0 15px #ff00c8, 0 0 30px #ff00c8;
       margin-bottom: 1rem;
       animation: pulse 2s infinite;
@@ -31,7 +31,7 @@
       color: #00ffe7;
       text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
     }
-  
+
     button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -39,7 +39,7 @@
       font-weight: bold;
       border: none;
       border-radius: 5px;
-      background-color: #ff00c8; /* 핑크 네온 버튼 */
+      background-color: #ff00c8;
       color: white;
       cursor: pointer;
       box-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8;
@@ -47,11 +47,17 @@
     }
 
     button:hover {
-      background-color: #00ffe7; /* 버튼 호버 시 색상 변경 */
+      background-color: #00ffe7;
       box-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
     }
-    <img class="neon-image" src="images/sample.png" alt="Cyberpunk Image">
-    /* 애니메이션 효과 */
+
+    .neon-image {
+      margin-top: 20px;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #ff00c8;
+    }
+
     body::after {
       content: "";
       position: absolute;
@@ -74,367 +80,28 @@
       0%, 100% { text-shadow: 0px 0px 15px #ff00c8, 0px 0px 30px #ff00c8; }
       50% { text-shadow: 0px 0px 25px #ff00c8, 0px 0px 40px #ff00c8; }
     }
-    
+
     footer {
-        position: absolute;
-        bottom:10px ;
-        color:#fff;font-size:.9rem
-        ;
+      position: absolute;
+      bottom: 10px;
+      color: #fff;
+      font-size: .9rem;
     }
-    
-  
-    
-    
-    
-    
-    
-    
-
-    
-    
-
-
-    
-    
-
-
-    
-    
-
-
-    
-    
-
-
-    
-    
-
-
-    
-    
-
-
-    
-    
-
-
-    
-    
-
-
-    
-    
-
-
-    
-    
-
-
-    
-    
-
-
-    
-    
-
-
-    
-    
-
-
-
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-   
-
-  
-
-  
-  
-
-  
-    
-  
-  
-
-
-</style>
-<script>
-window.addEventListener('DOMContentLoaded', () => alert('⚡ Welcome to the Cyberpunk World ⚡'));
-
-</script>
+  </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => alert('⚡ Welcome to the Cyberpunk World ⚡'));
+  </script>
 </head>
-<body>
-<h1>HELLO CYBERPUNK</h1>
-<h2>미래를 향한 첫 번째 웹 페이지</h2>
-<button onclick="alert('네온 세계에 오신 것을 환영합니다!')">Click Me</button>
 
-<footer>Copyright © Cyberpunk World | All Rights Reserved</footer>
-</body></html>
+<body>
+  <h1>HELLO CYBERPUNK</h1>
+  <h2>미래를 향한 첫 번째 웹 페이지</h2>
+
+  <button onclick="alert('네온 세계에 오신 것을 환영합니다!')">Click Me</button>
+
+  <!-- 여기 이미지 추가 -->
+  <img class="neon-image" src="images/sample.png" alt="Cyberpunk Image">
+
+  <footer>Copyright © Cyberpunk World | All Rights Reserved</footer>
+</body>
+</html>
