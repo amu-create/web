@@ -17,18 +17,38 @@
       overflow: hidden;
     }
 
-    h2 {
-      font-size: 3rem;
+    h1 {
+      font-size: 4rem;
       font-weight: bolder;
       color: #ff00c8; /* 핑크 네온 컬러 */
-      text-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8;
+      text-shadow: 0 0 15px #ff00c8, 0 0 30px #ff00c8;
       margin-bottom: 1rem;
+      animation: pulse 2s infinite;
     }
 
-    h3 {
-      font-size: 1.5rem;
+    h2 {
+      font-size: 2rem;
       color: #00ffe7;
-      text-shadow: 0 0 5px #00ffe7, 0 0 10px #00ffe7;
+      text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff00c8; /* 핑크 네온 버튼 */
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #00ffe7; /* 버튼 호버 시 색상 변경 */
+      box-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
     }
 
     /* 애니메이션 효과 */
@@ -49,15 +69,372 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-  </style>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      alert('⚡ Welcome to the Cyberpunk World ⚡');
-    });
-  </script>
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0px 0px 15px #ff00c8, 0px 0px 30px #ff00c8; }
+      50% { text-shadow: 0px 0px 25px #ff00c8, 0px 0px 40px #ff00c8; }
+    }
+    
+    footer {
+        position: absolute;
+        bottom:10px ;
+        color:#fff;font-size:.9rem
+        ;
+    }
+    
+  
+    
+    
+    
+    
+    
+    
+
+    
+    
+
+
+    
+    
+
+
+    
+    
+
+
+    
+    
+
+
+    
+    
+
+
+    
+    
+
+
+    
+    
+
+
+    
+    
+
+
+    
+    
+
+
+    
+    
+
+
+    
+    
+
+
+    
+    
+
+
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+  
+
+  
+  
+
+  
+    
+  
+  
+
+
+</style>
+<script>
+window.addEventListener('DOMContentLoaded', () => alert('⚡ Welcome to the Cyberpunk World ⚡'));
+
+</script>
 </head>
 <body>
-  <h2>HELLO CYBERPUNK</h2>
-  <h3>미래를 향한 첫 번째 웹 페이지</h3>
-</body>
-</html>
+<h1>HELLO CYBERPUNK</h1>
+<h2>미래를 향한 첫 번째 웹 페이지</h2>
+<button onclick="alert('네온 세계에 오신 것을 환영합니다!')">Click Me</button>
+
+<footer>Copyright © Cyberpunk World | All Rights Reserved</footer>
+</body></html>
