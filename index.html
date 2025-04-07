@@ -1,127 +1,63 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>My YouTube Clone</title>
+  <meta charset="utf-8">
+  <title>Cyberpunk Web Page</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      font-family: Arial, sans-serif;
-    }
-    header {
-      height: 60px;
-      background-color: white;
-      border-bottom: 1px solid #ddd;
+      background-color: #0f0f0f; /* 딥블랙 배경 */
+      color: #00ffe7; /* 네온 블루 텍스트 */
+      font-family: 'Orbitron', sans-serif; /* 미래형 폰트 */
       display: flex;
+      flex-direction: column;
       align-items: center;
-      padding: 0 20px;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .container {
-      display: flex;
-    }
-    nav {
-      width: 220px;
-      background-color: white;
-      border-right: 1px solid #ddd;
-      height: calc(100vh - 60px);
-      padding: 20px 0;
-    }
-    nav ul {
-      list-style: none;
-    }
-    nav ul li {
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-    nav ul li:hover {
-      background-color: #eee;
-    }
-    main {
-      flex-grow: 1;
-      background-color: #f9f9f9;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: white;
-      border-radius: 8px;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
       overflow: hidden;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: transform 0.3s;
     }
-    .card:hover {
-      transform: scale(1.03);
+
+    h2 {
+      font-size: 3rem;
+      font-weight: bolder;
+      color: #ff00c8; /* 핑크 네온 컬러 */
+      text-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8;
+      margin-bottom: 1rem;
     }
-    .thumbnail {
-      background: gray;
-      height: 140px;
+
+    h3 {
+      font-size: 1.5rem;
+      color: #00ffe7;
+      text-shadow: 0 0 5px #00ffe7, 0 0 10px #00ffe7;
     }
-    .card-content {
-      padding: 10px;
+
+    /* 애니메이션 효과 */
+    body::after {
+      content: "";
+      position: absolute;
+      width: 400%;
+      height: 400%;
+      background: linear-gradient(45deg, #ff00c8, #00ffe7, #ff00c8, #00ffe7);
+      background-size: 400% 400%;
+      animation: neonFlow 20s ease infinite;
+      opacity: 0.05;
+      z-index: -1;
     }
-    .card-content h4 {
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-    .card-content p {
-      font-size: 14px;
-      color: #555;
+
+    @keyframes neonFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
   </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      alert('⚡ Welcome to the Cyberpunk World ⚡');
+    });
+  </script>
 </head>
 <body>
-  <header>
-    <div>유튜브 로고</div>
-    <input type="text" placeholder="검색" style="width:300px; padding:5px;">
-    <div>프로필</div>
-  </header>
-
-  <div class="container">
-    <nav>
-      <ul>
-        <li>홈</li>
-        <li>Shorts</li>
-        <li>구독</li>
-        <li>나중에 볼 동영상</li>
-        <li>좋아요 표시한 동영상</li>
-      </ul>
-    </nav>
-
-    <main>
-      <div class="card">
-        <div class="thumbnail"></div>
-        <div class="card-content">
-          <h4>동영상 제목</h4>
-          <p>채널 이름 • 조회수</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="thumbnail"></div>
-        <div class="card-content">
-          <h4>동영상 제목</h4>
-          <p>채널 이름 • 조회수</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="thumbnail"></div>
-        <div class="card-content">
-          <h4>동영상 제목</h4>
-          <p>채널 이름 • 조회수</p>
-        </div>
-      </div>
-      <!-- 카드 더 추가 가능 -->
-    </main>
-  </div>
+  <h2>HELLO CYBERPUNK</h2>
+  <h3>미래를 향한 첫 번째 웹 페이지</h3>
 </body>
 </html>
