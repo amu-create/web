@@ -2,55 +2,126 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My First Web Site</title>
+  <title>My YouTube Clone</title>
   <style>
-    /* 전체 레이아웃 설정 */
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+    * {
       margin: 0;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
     }
-
-    h2 {
-      font-size: 3rem;
-      font-weight: bold;
-      color: #e63946;
-      margin-bottom: 0.5rem;
+    body {
+      font-family: Arial, sans-serif;
     }
-
-    h3 {
-      font-size: 1.5rem;
-      color: #457b9d;
-      margin-bottom: 2rem;
+    header {
+      height: 60px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-
-    a {
-      font-size: 1.2rem;
-      color: #1d3557;
-      text-decoration: none;
-      border: 2px solid #1d3557;
+    .container {
+      display: flex;
+    }
+    nav {
+      width: 220px;
+      background-color: white;
+      border-right: 1px solid #ddd;
+      height: calc(100vh - 60px);
+      padding: 20px 0;
+    }
+    nav ul {
+      list-style: none;
+    }
+    nav ul li {
       padding: 10px 20px;
-      border-radius: 8px;
-      transition: background-color 0.3s, color 0.3s;
+      cursor: pointer;
     }
-
-    a:hover {
-      background-color: #1d3557;
-      color: white;
+    nav ul li:hover {
+      background-color: #eee;
+    }
+    main {
+      flex-grow: 1;
+      background-color: #f9f9f9;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .thumbnail {
+      background: gray;
+      height: 140px;
+    }
+    .card-content {
+      padding: 10px;
+    }
+    .card-content h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .card-content p {
+      font-size: 14px;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <h2>Hello World</h2>
-  <h3>처음 만드는 웹 페이지</h3>
+  <header>
+    <div>유튜브 로고</div>
+    <input type="text" placeholder="검색" style="width:300px; padding:5px;">
+    <div>프로필</div>
+  </header>
 
-  <!-- 링크 버튼 추가 -->
-  <a href="second.html">다음 페이지</a>
+  <div class="container">
+    <nav>
+      <ul>
+        <li>홈</li>
+        <li>Shorts</li>
+        <li>구독</li>
+        <li>나중에 볼 동영상</li>
+        <li>좋아요 표시한 동영상</li>
+      </ul>
+    </nav>
+
+    <main>
+      <div class="card">
+        <div class="thumbnail"></div>
+        <div class="card-content">
+          <h4>동영상 제목</h4>
+          <p>채널 이름 • 조회수</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumbnail"></div>
+        <div class="card-content">
+          <h4>동영상 제목</h4>
+          <p>채널 이름 • 조회수</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumbnail"></div>
+        <div class="card-content">
+          <h4>동영상 제목</h4>
+          <p>채널 이름 • 조회수</p>
+        </div>
+      </div>
+      <!-- 카드 더 추가 가능 -->
+    </main>
+  </div>
 </body>
 </html>
