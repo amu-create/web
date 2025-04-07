@@ -51,8 +51,14 @@
       box-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
     }
 
+    /* 이미지 두 개를 가로로 배치 */
+    .image-container {
+      display: flex; /* flexbox 활성화 */
+      justify-content: center;
+      gap: 20px; /* 이미지 간격 */
+    }
+
     .neon-image {
-      margin-top: 20px;
       width: 300px;
       border-radius: 10px;
       box-shadow: 0 0 20px #ff00c8;
@@ -99,9 +105,11 @@
 
   <button onclick="alert('네온 세계에 오신 것을 환영합니다!')">Click Me</button>
 
-  <!-- 여기 이미지 추가 -->
-  <img class="neon-image" src="images/sample.png" alt="Cyberpunk Image">
-  <img class="neon-image" src="images/sample.gif" alt="Cyberpunk GIF">
+  <!-- 이미지를 가로로 배치할 div -->
+  <div class="image-container">
+    <img class="neon-image" src="images/sample.png" alt="Cyberpunk Image">
+    <img class="neon-image" src="images/sample.gif" alt="Cyberpunk GIF">
+  </div>
 
   <footer>Copyright © Cyberpunk World | All Rights Reserved</footer>
 </body>
