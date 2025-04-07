@@ -111,6 +111,7 @@
       position: absolute;
       border: 2px solid #00ffe7;
       opacity: 0.3;
+      animation: moveShape 10s infinite ease-in-out;
     }
 
     .circle {
@@ -119,7 +120,7 @@
       border-radius: 50%;
       top: 10%;
       left: 10%;
-      animation: rotateCircle 10s infinite linear;
+      animation-delay: 0.2s;
     }
 
     .triangle {
@@ -130,7 +131,7 @@
       border-bottom: 200px solid #00ffe7;
       top: 50%;
       left: 20%;
-      animation: rotateTriangle 8s infinite linear;
+      animation-delay: 0.5s;
     }
 
     .square {
@@ -138,7 +139,7 @@
       height: 200px;
       top: 70%;
       left: 60%;
-      animation: rotateSquare 12s infinite linear;
+      animation-delay: 1s;
     }
 
     .line {
@@ -147,27 +148,36 @@
       top: 80%;
       left: 10%;
       transform: rotate(45deg);
-      animation: rotateLine 6s infinite linear;
+      animation-delay: 1.5s;
     }
 
-    @keyframes rotateCircle {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    /* 더 많은 도형들 */
+    .hexagon {
+      width: 120px;
+      height: 120px;
+      background-color: transparent;
+      border-left: 60px solid transparent;
+      border-right: 60px solid transparent;
+      border-bottom: 104px solid #00ffe7;
+      top: 30%;
+      left: 50%;
+      animation-delay: 2s;
     }
 
-    @keyframes rotateTriangle {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .star {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid #ff00c8;
+      top: 60%;
+      left: 70%;
+      animation-delay: 2.5s;
     }
 
-    @keyframes rotateSquare {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    @keyframes rotateLine {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    @keyframes moveShape {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(200px, 200px); }
     }
   </style>
   <script>
@@ -193,6 +203,8 @@
     <div class="triangle"></div>
     <div class="square"></div>
     <div class="line"></div>
+    <div class="hexagon"></div>
+    <div class="star"></div>
   </div>
 
   <footer>Copyright © Cyberpunk World | All Rights Reserved</footer>
