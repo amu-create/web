@@ -1,38 +1,20 @@
+
 $(document).ready(function () {
-  let userData = [];
+  let userData = JSON.parse(localStorage.getItem('userData')) || [];
   let currentPage = 1;
   const rowsPerPage = 5;
   let sortField = 'id';
   let sortDirection = 'asc';
   let filterText = '';
 
+  function saveToLocalStorage() {
+    localStorage.setItem('userData', JSON.stringify(userData));
+  }
+
   function showAlert(msg, type) {
     const alertBox = $('#alertMessage');
     alertBox.removeClass().addClass(`alert alert-${type}`).text(msg).slideDown();
     setTimeout(() => alertBox.slideUp(), 3000);
-  }
-
-  function loadUserData() {
-    $('#loadingIndicator').show();
-    $('#userTable tbody').empty();
-
-    $.ajax({
-      url: 'https://amu-create.github.io/web/members.json',
-      method: 'GET',
-      dataType: 'json',
-      success: function (data) {
-        userData = data;
-        showAlert('데이터를 성공적으로 불러왔습니다.', 'success');
-        renderTable();
-      },
-      error: function () {
-        showAlert('데이터 로딩 실패', 'danger');
-        $('#userTable tbody').html('<tr><td colspan=\"3\" style=\"text-align:center\">불러오기 실패</td></tr>');
-      },
-      complete: function () {
-        $('#loadingIndicator').hide();
-      }
-    });
   }
 
   function renderTable() {
@@ -52,7 +34,7 @@ $(document).ready(function () {
     const paginated = filteredData.slice(start, start + rowsPerPage);
 
     if (paginated.length === 0) {
-      $('#userTable tbody').html('<tr><td colspan=\"3\" style=\"text-align:center\">표시할 데이터 없음</td></tr>');
+      $('#userTable tbody').html('<tr><td colspan="3" style="text-align:center">표시할 데이터 없음</td></tr>');
     } else {
       paginated.forEach(user => {
         $('#userTable tbody').append(`
@@ -140,6 +122,7 @@ $(document).ready(function () {
   $('#confirmDeleteBtn').on('click', function () {
     const id = $(this).data('id');
     userData = userData.filter(user => user.id !== id);
+    saveToLocalStorage();
     $('#deleteModal').hide();
     renderTable();
     showAlert('이용자가 삭제되었습니다.', 'success');
@@ -162,6 +145,7 @@ $(document).ready(function () {
       showAlert('이용자가 추가되었습니다!', 'success');
     }
 
+    saveToLocalStorage();
     $('#userModal').hide();
     renderTable();
   });
@@ -171,7 +155,8 @@ $(document).ready(function () {
   });
 
   $('#refreshBtn').on('click', function () {
-    loadUserData();
+    renderTable();
+    showAlert('데이터가 새로고침 되었습니다.', 'success');
   });
 
   $('.dark-mode-toggle').on('click', function () {
@@ -181,5 +166,5 @@ $(document).ready(function () {
     $(this).html(`<i class="fas ${icon}"></i> ${text}`);
   });
 
-  loadUserData(); // 초기 데이터 로드
+  renderTable();
 });
