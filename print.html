@@ -2,70 +2,867 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>이용자 정보</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이용자 정보 관리 시스템</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
+    :root {
+      --primary-color: #4a6cf7;
+      --secondary-color: #6a11cb;
+      --gradient: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
+      --light-bg: #f8f9fa;
+      --dark-bg: #343a40;
+      --light-text: #f8f9fa;
+      --dark-text: #343a40;
+      --border-radius: 10px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    }
+    
     body {
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 30px;
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    table {
-      margin: 20px auto;
-      border-collapse: collapse;
-      width: 60%;
+    
+    /* 네비게이션 바 */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 12px;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-    caption {
-      font-size: 20px;
+    
+    .navbar-brand {
+      font-size: 1.5rem;
       font-weight: bold;
-      margin-bottom: 10px;
+      color: var(--primary-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .navbar-brand i {
+      margin-right: 0.5rem;
+    }
+    
+    .navbar-menu {
+      display: flex;
+      list-style: none;
+    }
+    
+    .navbar-menu li {
+      margin-left: 1.5rem;
+    }
+    
+    .navbar-menu a {
+      color: var(--dark-text);
+      text-decoration: none;
+      position: relative;
+      padding: 0.5rem 0;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .navbar-menu a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      left: 0;
+      bottom: 0;
+      transition: var(--transition);
+    }
+    
+    .navbar-menu a:hover {
+      color: var(--primary-color);
+    }
+    
+    .navbar-menu a:hover::after {
+      width: 100%;
+    }
+    
+    /* 메인 컨테이너 */
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      flex: 1;
+    }
+    
+    /* 헤더 */
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 2rem 0;
+      background: var(--gradient);
+      color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    /* 카드 스타일 */
+    .card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient);
+    }
+    
+    /* 검색 필터 */
+    .search-container {
+      display: flex;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .search-input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      min-width: 200px;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.2);
+    }
+    
+    .btn {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-secondary {
+      background: #f8f9fa;
+      color: var(--dark-text);
+      border: 1px solid #ddd;
+    }
+    
+    .btn-secondary:hover {
+      background: #e9ecef;
+    }
+
+    .btn-danger {
+      background: #dc3545;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #c82333;
+    }
+    
+    /* 테이블 스타일 */
+    .table-container {
+      overflow-x: auto;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    
+    th {
+      background-color: #f8f9fa;
+      font-weight: 600;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    th:after {
+      content: '';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.5;
+    }
+    
+    th.sort-asc:after {
+      content: '↑';
+    }
+    
+    th.sort-desc:after {
+      content: '↓';
+    }
+    
+    tr:hover {
+      background-color: rgba(74, 108, 247, 0.05);
+    }
+    
+    .action-btn {
+      padding: 0.4rem 0.8rem;
+      margin-right: 0.5rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+    
+    .edit-btn {
+      background-color: #28a745;
+      color: white;
+    }
+    
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+    
+    /* 모달 */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1010;
+      overflow: auto;
+    }
+    
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 2rem;
+      width: 90%;
+      max-width: 500px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      animation: modalFadeIn 0.3s;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      color: #aaa;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .close-btn:hover {
+      color: var(--dark-text);
+    }
+    
+    .modal-header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .modal-header h2 {
+      color: var(--primary-color);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.2);
+    }
+    
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    /* 알림 메시지 */
+    .alert {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      display: none;
+    }
+    
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    
+    /* 로딩 애니메이션 */
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid var(--primary-color);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    
+    /* 애니메이션 */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* 페이지네이션 */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin-top: 2rem;
+    }
+    
+    .pagination li {
+      margin: 0 5px;
+    }
+    
+    .pagination a {
+      display: block;
+      padding: 0.5rem 0.8rem;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: var(--transition);
+      color: var(--dark-text);
+    }
+    
+    .pagination a.active {
+      background: var(--gradient);
+      color: white;
+    }
+    
+    .pagination a:hover:not(.active) {
+      background-color: #e9ecef;
+    }
+    
+    /* 푸터 */
+    .footer {
+      background-color: white;
+      padding: 2rem 0;
+      text-align: center;
+      margin-top: auto;
+      border-top: 1px solid #eee;
+    }
+    
+    /* 다크 모드 토글 */
+    .dark-mode-toggle {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      margin-left: 1.5rem;
+      padding: 0.5rem;
+      border-radius: 20px;
+      transition: var(--transition);
+    }
+    
+    .dark-mode-toggle i {
+      margin-right: 0.5rem;
+    }
+    
+    /* 다크 모드 스타일 */
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+    }
+    
+    body.dark-mode .navbar,
+    body.dark-mode .card,
+    body.dark-mode .modal-content {
+      background-color: #2d3748;
+      color: var(--light-text);
+    }
+    
+    body.dark-mode .navbar-menu a {
+      color: var(--light-text);
+    }
+    
+    body.dark-mode th {
+      background-color: #2d3748;
+      color: var(--light-text);
+    }
+    
+    body.dark-mode th, 
+    body.dark-mode td {
+      border-bottom: 1px solid #4a5568;
+    }
+    
+    body.dark-mode .search-input,
+    body.dark-mode .form-input {
+      background-color: #4a5568;
+      border-color: #4a5568;
+      color: var(--light-text);
+    }
+    
+    body.dark-mode .btn-secondary {
+      background-color: #4a5568;
+      color: var(--light-text);
+      border-color: #4a5568;
+    }
+    
+    body.dark-mode .btn-secondary:hover {
+      background-color: #2d3748;
+    }
+
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+      }
+      
+      .navbar-menu {
+        margin-top: 1rem;
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .navbar-menu li {
+        margin: 0.5rem 0;
+        margin-left: 0;
+      }
+      
+      .search-container {
+        flex-direction: column;
+      }
+      
+      .table-container {
+        overflow-x: auto;
+      }
+      
+      .pagination {
+        flex-wrap: wrap;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- 네비게이션 바 -->
+  <nav class="navbar">
+    <a href="#" class="navbar-brand">
+      <i class="fas fa-users"></i> 이용자 관리
+    </a>
+    <ul class="navbar-menu">
+      <li><a href="#" class="active">대시보드</a></li>
+      <li><a href="#">이용자 목록</a></li>
+      <li><a href="#">통계</a></li>
+      <li><a href="#">설정</a></li>
+      <li class="dark-mode-toggle"><i class="fas fa-moon"></i> 다크 모드</li>
+    </ul>
+  </nav>
 
-  <table id="userTable">
-    <caption>이용자 정보</caption>
-    <thead>
-      <tr>
-        <th>아이디</th>
-        <th>전화번호</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- 여기 jQuery로 데이터가 들어올 예정 -->
-    </tbody>
-  </table>
+  <!-- 메인 컨테이너 -->
+  <div class="container">
+    <!-- 헤더 -->
+    <div class="header">
+      <h1>이용자 정보 관리 시스템</h1>
+      <p>고객 정보를 쉽고 빠르게 관리하세요</p>
+    </div>
+
+    <!-- 알림 메시지 -->
+    <div id="alertMessage" class="alert"></div>
+
+    <!-- 카드 -->
+    <div class="card">
+      <!-- 검색 및 필터 -->
+      <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="이름이나 전화번호로 검색">
+        <button id="addUserBtn" class="btn btn-primary"><i class="fas fa-plus"></i> 이용자 추가</button>
+        <button id="refreshBtn" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> 새로고침</button>
+      </div>
+
+      <!-- 로딩 애니메이션 -->
+      <div class="loading" id="loadingIndicator">
+        <div class="loader"></div>
+        <p>데이터를 불러오는 중...</p>
+      </div>
+
+      <!-- 테이블 -->
+      <div class="table-container">
+        <table id="userTable">
+          <thead>
+            <tr>
+              <th data-sort="id" class="sort-asc">아이디 <i class="fas fa-sort"></i></th>
+              <th data-sort="phone">전화번호 <i class="fas fa-sort"></i></th>
+              <th>작업</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- jQuery로 동적으로 데이터 채워짐 -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 페이지네이션 -->
+      <ul class="pagination" id="pagination">
+        <!-- 페이지는 데이터에 따라 동적으로 생성됨 -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <p>&copy; 2025 이용자 관리 시스템 | 모든 권리 보유</p>
+  </footer>
+
+  <!-- 이용자 추가/수정 모달 -->
+  <div id="userModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div class="modal-header">
+        <h2 id="modalTitle">이용자 추가</h2>
+      </div>
+      <form id="userForm">
+        <input type="hidden" id="editUserId">
+        <div class="form-group">
+          <label for="userId" class="form-label">아이디</label>
+          <input type="text" id="userId" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="userPhone" class="form-label">전화번호</label>
+          <input type="tel" id="userPhone" class="form-input" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="예: 010-5478-6521" required>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" id="cancelBtn">취소</button>
+          <button type="submit" class="btn btn-primary" id="saveBtn">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 삭제 확인 모달 -->
+  <div id="deleteModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div class="modal-header">
+        <h2>이용자 삭제</h2>
+      </div>
+      <p>정말로 이 이용자를 삭제하시겠습니까?</p>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" id="cancelDeleteBtn">취소</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">삭제</button>
+      </div>
+    </div>
+  </div>
 
   <script>
     $(document).ready(function () {
-      $.ajax({
-        url: 'https://amu-create.github.io/web/members.json',  // ← members.json 주소 정확히!
-        method: 'GET',
-        dataType: 'json',
-        success: function (data) {
-          data.forEach(function (user) {
+      let userData = []; // 사용자 데이터 저장
+      let currentPage = 1;
+      const rowsPerPage = 5;
+      let sortField = 'id';
+      let sortDirection = 'asc';
+      let filterText = '';
+
+      // 다크 모드 토글
+      $('.dark-mode-toggle').on('click', function() {
+        $('body').toggleClass('dark-mode');
+        const isDarkMode = $('body').hasClass('dark-mode');
+        
+        if (isDarkMode) {
+          $('.dark-mode-toggle i').removeClass('fa-moon').addClass('fa-sun');
+          $('.dark-mode-toggle').html('<i class="fas fa-sun"></i> 라이트 모드');
+        } else {
+          $('.dark-mode-toggle i').removeClass('fa-sun').addClass('fa-moon');
+          $('.dark-mode-toggle').html('<i class="fas fa-moon"></i> 다크 모드');
+        }
+      });
+
+      // 데이터 로딩 함수
+      function loadUserData() {
+        $('#loadingIndicator').show();
+        $('#userTable tbody').empty();
+        
+        $.ajax({
+          url: 'members.json',  // URL 상대 경로로 수정
+          method: 'GET',
+          dataType: 'json',
+          success: function (data) {
+            userData = data;
+            showAlert('데이터를 성공적으로 불러왔습니다.', 'success');
+            renderTable();
+          },
+          error: function (xhr, status, error) {
+            console.error('데이터 로딩 오류:', error);
+            showAlert('데이터를 불러오는 데 실패했습니다. 잠시 후 다시 시도해주세요.', 'danger');
+            $('#userTable tbody').html('<tr><td colspan="3" style="text-align: center;">데이터를 불러오지 못했습니다.</td></tr>');
+          },
+          complete: function () {
+            $('#loadingIndicator').hide();
+          }
+        });
+      }
+
+      // 테이블 렌더링 함수
+      function renderTable() {
+        $('#userTable tbody').empty();
+        
+        // 정렬
+        const sortedData = [...userData].sort((a, b) => {
+          if (sortDirection === 'asc') {
+            return a[sortField] > b[sortField] ? 1 : -1;
+          } else {
+            return a[sortField] < b[sortField] ? 1 : -1;
+          }
+        });
+        
+        // 필터링
+        const filteredData = sortedData.filter(user => {
+          if (!filterText) return true;
+          return user.id.toLowerCase().includes(filterText.toLowerCase()) || 
+                 user.phone.toLowerCase().includes(filterText.toLowerCase());
+        });
+        
+        // 페이지네이션
+        const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+        const startIndex = (currentPage - 1) * rowsPerPage;
+        const paginatedData = filteredData.slice(startIndex, startIndex + rowsPerPage);
+        
+        // 테이블 내용 생성
+        if (paginatedData.length === 0) {
+          $('#userTable tbody').html('<tr><td colspan="3" style="text-align: center;">표시할 데이터가 없습니다.</td></tr>');
+        } else {
+          paginatedData.forEach(function (user) {
             $('#userTable tbody').append(`
               <tr>
                 <td>${user.id}</td>
                 <td>${user.phone}</td>
+                <td>
+                  <button class="action-btn edit-btn" data-id="${user.id}"><i class="fas fa-edit"></i> 수정</button>
+                  <button class="action-btn delete-btn" data-id="${user.id}"><i class="fas fa-trash"></i> 삭제</button>
+                </td>
               </tr>
             `);
           });
-        },
-        error: function () {
-          $('#userTable tbody').append('<tr><td colspan="2">데이터를 불러오지 못했습니다.</td></tr>');
+        }
+        
+        // 페이지네이션 업데이트
+        renderPagination(totalPages);
+      }
+      
+      // 페이지네이션 렌더링
+      function renderPagination(totalPages) {
+        $('#pagination').empty();
+        
+        // 이전 페이지 버튼
+        if (totalPages > 1) {
+          $('#pagination').append(`
+            <li><a href="#" class="pagination-link" data-page="prev">&laquo;</a></li>
+          `);
+        }
+        
+        // 페이지 번호
+        for (let i = 1; i <= totalPages; i++) {
+          $('#pagination').append(`
+            <li><a href="#" class="pagination-link ${currentPage === i ? 'active' : ''}" data-page="${i}">${i}</a></li>
+          `);
+        }
+        
+        // 다음 페이지 버튼
+        if (totalPages > 1) {
+          $('#pagination').append(`
+            <li><a href="#" class="pagination-link" data-page="next">&raquo;</a></li>
+          `);
+        }
+      }
+      
+      // 페이지네이션 클릭 이벤트
+      $(document).on('click', '.pagination-link', function(e) {
+        e.preventDefault();
+        const page = $(this).data('page');
+        
+        if (page === 'prev') {
+          if (currentPage > 1) currentPage--;
+        } else if (page === 'next') {
+          const totalPages = Math.ceil(userData.filter(user => {
+            if (!filterText) return true;
+            return user.id.toLowerCase().includes(filterText.toLowerCase()) || 
+                  user.phone.toLowerCase().includes(filterText.toLowerCase());
+          }).length / rowsPerPage);
+          
+          if (currentPage < totalPages) currentPage++;
+        } else {
+          currentPage = page;
+        }
+        
+        renderTable();
+      });
+      
+      // 검색 기능
+      $('#searchInput').on('input', function() {
+        filterText = $(this).val();
+        currentPage = 1; // 검색 시 첫 페이지로 이동
+        renderTable();
+      });
+      
+      // 정렬 기능
+      $('#userTable th[data-sort]').on('click', function() {
+        const newSortField = $(this).data('sort');
+        
+        if (sortField === newSortField) {
+          // 같은 필드 클릭 시 정렬 방향 전환
+          sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+          // 다른 필드 클릭 시 해당 필드로 오름차순 정렬
+          sortField = newSortField;
+          sortDirection = 'asc';
+        }
+        
+        // UI 업데이트
+        $('#userTable th').removeClass('sort-asc sort-desc');
+        $(this).addClass(sortDirection === 'asc' ? 'sort-asc' : 'sort-desc');
+        
+        renderTable();
+      });
+      
+      // 이용자 추가 버튼 클릭
+      $('#addUserBtn').on('click', function() {
+        $('#modalTitle').text('이용자 추가');
+        $('#userForm')[0].reset();
+        $('#editUserId').val('');
+        $('#userModal').css('display', 'block');
+      });
+      
+      // 이용자 수정 버튼 클릭
+      $(document).on('click', '.edit-btn', function() {
+        const userId = $(this).data('id');
+        const user = userData.find(u => u.id === userId);
+        
+        if (user) {
+          $('#modalTitle').text('이용자 수정');
+          $('#editUserId').val(userId);
+          $('#userId').val(user.id);
+          $('#userPhone').val(user.phone);
+          $('#userModal').css('display', 'block');
         }
       });
-    });
-  </script>
-
-</body>
-</html>
+      
+      // 이용자 삭제 버튼 클릭
+      $(document).on('click', '.delete-btn', function() {
+        const userId = $(this).data('id');
+        $('#confirmDeleteBtn').data('id', userId);
+        $('#deleteModal').css('display', 'block');
+      });
+      
+      // 삭제 확인
+      $('#confirmDeleteBtn').on('click', function() {
+        const userId = $(this).data('id');
+        userData = userData.filter(user => user.id !== userId);
+        
+        $('#deleteModal').css('display', 'none');
+        showAlert('이용자가 삭제되었습니다.', 'success');
+        renderTable();
+      });
+      
+      // 폼 제출 (추가/수정)
+      $('#userForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        const editId = $('#editUserId').val();
+        const userId = $('#userId').val();
+        const userPhone = $('#userPhone').val();
+        
+        if (editId) {
+          // 수정 모드
+          const index = userData.findIndex(user => user.id === editId);
+          if (index !== -1) {
+            userData[index] = {
+              id: userId,
+              phone:
