@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>회원가입</title>
+  <title>광기폭발 회원가입</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
@@ -23,37 +23,44 @@
     }
 
     body {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-      background-size: 600% 600%;
-      animation: backgroundAnimation 10s ease infinite;
+      background: radial-gradient(circle at center, var(--primary-color), var(--secondary-color), var(--accent-color));
+      background-size: 400% 400%;
+      animation: rainbow 6s ease infinite, shake 2s infinite;
       color: var(--text);
       min-height: 100vh;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
+      perspective: 1000px;
     }
 
-    @keyframes backgroundAnimation {
+    @keyframes rainbow {
       0% {background-position: 0% 50%;}
       50% {background-position: 100% 50%;}
       100% {background-position: 0% 50%;}
     }
 
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-2px); }
+      75% { transform: translateX(2px); }
+    }
+
     .container {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.9);
       border-radius: 30px;
-      box-shadow: 0 0 40px var(--accent-color), 0 0 80px var(--primary-color);
+      box-shadow: 0 0 50px var(--accent-color), 0 0 100px var(--primary-color);
       padding: 4rem 3rem;
       width: 100%;
       max-width: 900px;
-      position: relative;
-      animation: flicker 2s infinite alternate;
+      transform: rotateY(10deg);
+      animation: spinContainer 8s linear infinite;
     }
 
-    @keyframes flicker {
-      0% { box-shadow: 0 0 20px var(--accent-color); }
-      100% { box-shadow: 0 0 40px var(--primary-color), 0 0 80px var(--secondary-color); }
+    @keyframes spinContainer {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
     }
 
     h1 {
@@ -62,12 +69,12 @@
       background: linear-gradient(90deg, var(--accent-color), var(--white));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: pulseText 3s infinite;
+      animation: pulseText 1.5s infinite alternate;
     }
 
     @keyframes pulseText {
-      0%, 100% { text-shadow: 0 0 10px var(--accent-color); }
-      50% { text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--secondary-color); }
+      0% { text-shadow: 0 0 10px var(--accent-color); }
+      100% { text-shadow: 0 0 40px var(--primary-color), 0 0 70px var(--secondary-color); }
     }
 
     label {
@@ -90,8 +97,9 @@
 
     input:focus, select:focus, textarea:focus {
       outline: none;
-      background: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 0 10px var(--primary-color), 0 0 30px var(--accent-color);
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 15px var(--primary-color), 0 0 35px var(--accent-color);
+      transform: scale(1.05);
     }
 
     .id-check-wrap {
@@ -100,20 +108,20 @@
     }
 
     .btn-check, .btn-save, .btn-cancel {
-      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      background: repeating-linear-gradient(45deg, var(--primary-color), var(--secondary-color) 10px);
       color: white;
       padding: 0.8rem 1.5rem;
       border: none;
       border-radius: 20px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 10px var(--secondary-color);
-      transition: 0.3s;
+      box-shadow: 0 0 20px var(--secondary-color);
+      animation: flick 1s infinite alternate;
     }
 
-    .btn-check:hover, .btn-save:hover, .btn-cancel:hover {
-      transform: scale(1.1) rotate(1deg);
-      box-shadow: 0 0 30px var(--accent-color), 0 0 50px var(--primary-color);
+    @keyframes flick {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
     }
 
     .radio-group, .checkbox-group {
@@ -128,13 +136,12 @@
       text-align: center;
     }
 
-    /* 배경 입자 효과 */
     #particles-js {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       z-index: -2;
     }
   </style>
@@ -142,41 +149,32 @@
 <body>
   <div id="particles-js"></div>
   <div class="container">
-    <h1>🔥 회원 가입 폭발 🔥</h1>
+    <h1>🌀 광기 회원 가입 🧨</h1>
     <form>
       <label for="userid">ID</label>
       <div class="id-check-wrap">
         <input type="text" id="userid" placeholder="아이디" required />
         <button type="button" class="btn-check" onclick="checkDuplicateId()">중복확인</button>
       </div>
-
       <label for="password">Password</label>
       <input type="password" id="password" required />
-
       <label for="confirmPassword">암호 다시 입력</label>
       <input type="password" id="confirmPassword" required />
-
       <label for="name">이름</label>
       <input type="text" id="name" required />
-
       <label for="email">Email</label>
       <input type="email" id="email" required />
-
       <label for="phone">전화번호</label>
       <input type="tel" id="phone" placeholder="010-1234-5678" required />
-
       <label for="birth">생년월일</label>
       <input type="date" id="birth" required />
-
       <label>성별</label>
       <div class="radio-group">
         <label><input type="radio" name="gender" value="남" required /> 남</label>
         <label><input type="radio" name="gender" value="여" /> 여</label>
       </div>
-
       <label for="exp">경력</label>
       <input type="number" id="exp" min="0" max="50" placeholder="1" required /> 년
-
       <label>경험 언어(다수 선택)</label>
       <div class="checkbox-group">
         <label><input type="checkbox" name="lang" value="Java" /> Java</label>
@@ -185,13 +183,10 @@
         <label><input type="checkbox" name="lang" value="C" /> C</label>
         <label><input type="checkbox" name="lang" value="C++" /> C++</label>
       </div>
-
       <label for="intro">자기소개</label>
       <textarea id="intro" rows="5" placeholder="자기소개 (5줄 이내)"></textarea>
-
       <label for="blog">블로그 주소</label>
       <input type="url" id="blog" placeholder="https://example.com" />
-
       <label for="company">소속 회사명</label>
       <select id="company">
         <option value="">선택</option>
@@ -200,34 +195,32 @@
         <option value="line">라인</option>
         <option value="coupang">쿠팡</option>
       </select>
-
       <div class="form-actions">
-        <button type="submit" class="btn-save">💾 저장</button>
-        <button type="reset" class="btn-cancel">❌ 취소</button>
+        <button type="submit" class="btn-save">🚀 저장</button>
+        <button type="reset" class="btn-cancel">💣 취소</button>
       </div>
     </form>
   </div>
-
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     particlesJS("particles-js", {
       particles: {
-        number: { value: 80 },
+        number: { value: 100 },
         color: { value: ["#ffffff", "#ff00cc", "#00ffff"] },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
-        move: { enable: true, speed: 3 }
+        shape: { type: "edge" },
+        opacity: { value: 0.6 },
+        size: { value: 4 },
+        line_linked: { enable: true, distance: 120, color: "#ffffff", opacity: 0.5, width: 2 },
+        move: { enable: true, speed: 4 }
       },
       interactivity: {
         events: {
-          onhover: { enable: true, mode: "repulse" },
+          onhover: { enable: true, mode: "grab" },
           onclick: { enable: true, mode: "push" }
         },
         modes: {
-          repulse: { distance: 100 },
-          push: { particles_nb: 4 }
+          grab: { distance: 200, line_linked: { opacity: 1 } },
+          push: { particles_nb: 8 }
         }
       },
       retina_detect: true
