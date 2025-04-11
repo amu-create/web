@@ -1,0 +1,17 @@
+[
+  {
+    "userid": "apple",
+    "name": "사과",
+    "phone": "010-1111-2222"
+  },
+  {
+    "userid": "banana",
+    "name": "바나나",
+    "phone": "010-3333-4444"
+  },
+  {
+    "userid": "orange",
+    "name": "오렌지",
+    "phone": "010-5555-6666"
+  }
+]

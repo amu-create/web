@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>중복확인 예제</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5; }
+    .container { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input, button { padding: 10px; font-size: 1rem; }
+    .btn { margin-left: 10px; cursor: pointer; }
+    #checkResult { margin-top: 10px; font-weight: bold; }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>이용자 추가</h2>
+    <label for="userId">아이디:</label><br>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <input type="text" id="userId" placeholder="아이디 입력">
+      <button id="checkDuplicateBtn" class="btn">중복확인</button>
+    </div>
+    <small id="checkResult"></small>
+  </div>
+
+  <script>
+    $('#checkDuplicateBtn').on('click', function () {
+      const inputId = $('#userId').val().trim();
+      if (!inputId) {
+        $('#checkResult').text('아이디를 입력해주세요.').css('color', 'red');
+        return;
+      }
+
+      $.ajax({
+        url: 'users-check.json',
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          const isDuplicate = data.some(user => user.userid === inputId);
+          if (isDuplicate) {
+            $('#checkResult').text('❌ 이미 사용 중인 아이디입니다.').css('color', 'red');
+          } else {
+            $('#checkResult').text('✅ 사용 가능한 아이디입니다.').css('color', 'green');
+          }
+        },
+        error: function () {
+          $('#checkResult').text('데이터를 확인할 수 없습니다.').css('color', 'red');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
