@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원 가입</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #4a6cf7;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .inline-group {
+      display: flex;
+      gap: 1rem;
+    }
+    .checkbox-group label,
+    .radio-group label {
+      margin-right: 1rem;
+      font-weight: normal;
+    }
+    .button-group {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(120deg, #4a6cf7, #6a11cb);
+      color: white;
+    }
+    .btn-secondary {
+      background: #dee2e6;
+      margin-left: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>회원 가입</h2>
+    <form>
+      <div class="form-group">
+        <label for="userId">ID</label>
+        <div class="inline-group">
+          <input type="text" id="userId" required>
+          <button type="button" class="btn-secondary">중복확인</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="passwordConfirm">암호 다시 입력</label>
+        <input type="password" id="passwordConfirm" required>
+      </div>
+
+      <div class="form-group">
+        <label for="name">이름</label>
+        <input type="text" id="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">전화번호</label>
+        <input type="tel" id="phone" placeholder="010-1234-5678" required>
+      </div>
+
+      <div class="form-group">
+        <label for="birth">생년월일</label>
+        <input type="date" id="birth" required>
+      </div>
+
+      <div class="form-group">
+        <label>성별</label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="남" required> 남</label>
+          <label><input type="radio" name="gender" value="여"> 여</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="career">경력 (년)</label>
+        <input type="number" id="career" min="0" required>
+      </div>
+
+      <div class="form-group">
+        <label>경험 언어(다수 선택)</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="language" value="Java"> Java</label>
+          <label><input type="checkbox" name="language" value="Python"> Python</label>
+          <label><input type="checkbox" name="language" value="JavaScript"> JavaScript</label>
+          <label><input type="checkbox" name="language" value="C"> C</label>
+          <label><input type="checkbox" name="language" value="C++"> C++</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="intro">자기소개</label>
+        <textarea id="intro" rows="5" placeholder="자기소개 (5줄 이내)"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="blog">블로그 주소</label>
+        <input type="url" id="blog">
+      </div>
+
+      <div class="form-group">
+        <label for="company">소속 회사명</label>
+        <select id="company">
+          <option>선택</option>
+          <option>삼성</option>
+          <option>LG</option>
+          <option>카카오</option>
+          <option>네이버</option>
+          <option>기타</option>
+        </select>
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn-primary">저장</button>
+        <button type="reset" class="btn-secondary">취소</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
