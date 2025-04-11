@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,7 +19,6 @@
       --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       --transition: all 0.3s ease;
     }
-
     body {
       background-color: var(--light-bg);
       color: var(--dark-text);
@@ -28,171 +28,35 @@
       flex-direction: column;
       font-family: 'Segoe UI', sans-serif;
     }
-
-    .container {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      flex: 1;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 2rem;
-      padding: 2rem 0;
-      background: var(--gradient);
-      color: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-    }
-
-    .header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .header p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-
-    .search-container {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .search-input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .btn {
-      padding: 0.75rem 1.25rem;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .btn-primary {
-      background: var(--gradient);
-      color: white;
-    }
-
-    .btn-secondary {
-      background: #e2e6ea;
-      color: #333;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      box-shadow: var(--shadow);
-      border-radius: var(--border-radius);
-      overflow: hidden;
-    }
-
-    th, td {
-      padding: 1rem;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f1f3f5;
-    }
-
-    tr:nth-child(even) {
-      background-color: #fafafa;
-    }
-
-    .action-btn {
-      border: none;
-      padding: 0.4rem 0.8rem;
-      margin-right: 0.3rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .edit-btn {
-      background-color: #4caf50;
-      color: white;
-    }
-
-    .delete-btn {
-      background-color: #f44336;
-      color: white;
-    }
-
-    .pagination {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-      list-style: none;
-      padding: 0;
-    }
-
-    .pagination li {
-      margin: 0 5px;
-    }
-
-    .pagination a {
-      display: block;
-      padding: 0.5rem 0.75rem;
-      border-radius: 5px;
-      text-decoration: none;
-      color: #333;
-      background: #e2e6ea;
-    }
-
-    .pagination a.active {
-      background: var(--primary-color);
-      color: white;
-    }
-
-    .alert {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-      font-size: 1.5rem;
-      padding: 1rem 2rem;
-      animation: fadeout 3s forwards;
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-    }
-
-    .alert-success {
-      background-color: #d4edda;
-      color: #155724;
-    }
-
-    .alert-danger {
-      background-color: #f8d7da;
-      color: #721c24;
-    }
-
-    @keyframes fadeout {
-      0% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { opacity: 0; display: none; }
-    }
-
-    .loader {
-      text-align: center;
-      padding: 1rem;
-    }
+    .container { max-width: 960px; margin: 2rem auto; padding: 0 1rem; flex: 1; }
+    .header { text-align: center; margin-bottom: 2rem; padding: 2rem 0; background: var(--gradient); color: white; border-radius: var(--border-radius); box-shadow: var(--shadow); }
+    .header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .header p { font-size: 1.1rem; opacity: 0.9; }
+    .search-container { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .search-input { flex: 1; padding: 0.75rem 1rem; border: 1px solid #ccc; border-radius: 5px; }
+    .btn { padding: 0.75rem 1.25rem; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: var(--transition); }
+    .btn-primary { background: var(--gradient); color: white; }
+    .btn-secondary { background: #e2e6ea; color: #333; }
+    table { width: 100%; border-collapse: collapse; background: white; box-shadow: var(--shadow); border-radius: var(--border-radius); overflow: hidden; }
+    th, td { padding: 1rem; text-align: left; }
+    th { background-color: #f1f3f5; }
+    tr:nth-child(even) { background-color: #fafafa; }
+    .action-btn { border: none; padding: 0.4rem 0.8rem; margin-right: 0.3rem; border-radius: 4px; cursor: pointer; }
+    .edit-btn { background-color: #4caf50; color: white; }
+    .delete-btn { background-color: #f44336; color: white; }
+    .pagination { display: flex; justify-content: center; margin-top: 1rem; list-style: none; padding: 0; }
+    .pagination li { margin: 0 5px; }
+    .pagination a { display: block; padding: 0.5rem 0.75rem; border-radius: 5px; text-decoration: none; color: #333; background: #e2e6ea; }
+    .pagination a.active { background: var(--primary-color); color: white; }
+    .alert { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; font-size: 1.5rem; padding: 1rem 2rem; animation: fadeout 3s forwards; border-radius: 10px; box-shadow: var(--shadow); }
+    .alert-success { background-color: #d4edda; color: #155724; }
+    .alert-danger { background-color: #f8d7da; color: #721c24; }
+    @keyframes fadeout { 0% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; display: none; } }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 999; }
+    .modal-content { background: white; padding: 2rem; border-radius: var(--border-radius); width: 90%; max-width: 400px; box-shadow: var(--shadow); }
+    .modal-content input { width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 5px; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 0.5rem; }
+    .loader { text-align: center; padding: 1rem; }
   </style>
 </head>
 <body>
@@ -202,16 +66,12 @@
       <p>고객 정보를 쉽고 빠르게 관리하세요</p>
     </div>
 
-    <div id="alertMessage" class="alert"></div>
+    <div id="alertMessage" class="alert" style="display:none;"></div>
 
     <div class="search-container">
       <input type="text" id="searchInput" class="search-input" placeholder="이름이나 전화번호로 검색">
       <button id="addUserBtn" class="btn btn-primary"><i class="fas fa-plus"></i> 이용자 추가</button>
       <button id="refreshBtn" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> 새로고침</button>
-    </div>
-
-    <div class="loader" id="loadingIndicator" style="display:none">
-      <p>데이터를 불러오는 중...</p>
     </div>
 
     <div class="table-container">
@@ -223,81 +83,41 @@
             <th>작업</th>
           </tr>
         </thead>
-        <tbody>
-          <!-- 데이터 표시 영역 -->
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
 
     <ul class="pagination" id="pagination"></ul>
   </div>
 
-  <!-- jQuery 라이브러리 불러오기 -->
+  <!-- 사용자 추가/수정 모달 -->
+  <div class="modal" id="userModal">
+    <div class="modal-content">
+      <h3 id="modalTitle">이용자 추가</h3>
+      <form id="userForm">
+        <input type="hidden" id="editUserId">
+        <input type="text" id="userId" placeholder="아이디" required>
+        <input type="text" id="userPhone" placeholder="전화번호" required>
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary">저장</button>
+          <button type="button" class="btn btn-secondary close-btn" id="cancelBtn">취소</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 삭제 확인 모달 -->
+  <div class="modal" id="deleteModal">
+    <div class="modal-content">
+      <p>정말로 삭제하시겠습니까?</p>
+      <div class="modal-actions">
+        <button class="btn btn-danger" id="confirmDeleteBtn">삭제</button>
+        <button class="btn btn-secondary close-btn" id="cancelDeleteBtn">취소</button>
+      </div>
+    </div>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    let userData = [];
-    const rowsPerPage = 5;
-    let currentPage = 1;
-
-    function showAlert(msg, type = 'success') {
-      const alert = $(`<div class="alert alert-${type}">${msg}</div>`);
-      $("body").append(alert);
-      setTimeout(() => alert.remove(), 3000);
-    }
-
-    function renderTable() {
-      const tbody = $('#userTable tbody');
-      tbody.empty();
-      const filtered = userData.filter(user => {
-        const val = $('#searchInput').val().toLowerCase();
-        return user.id.toLowerCase().includes(val) || user.phone.includes(val);
-      });
-      const start = (currentPage - 1) * rowsPerPage;
-      const pageData = filtered.slice(start, start + rowsPerPage);
-      pageData.forEach(user => {
-        tbody.append(`
-          <tr>
-            <td>${user.id}</td>
-            <td>${user.phone}</td>
-            <td>
-              <button class="action-btn edit-btn" data-id="${user.id}">수정</button>
-              <button class="action-btn delete-btn" data-id="${user.id}">삭제</button>
-            </td>
-          </tr>
-        `);
-      });
-    }
-
-    function loadUserData() {
-      $('#loadingIndicator').show();
-      $.ajax({
-        url: 'https://amu-create.github.io/web/members.json',
-        method: 'GET',
-        dataType: 'json',
-        success: function (data) {
-          userData = data;
-          renderTable();
-          showAlert('데이터를 성공적으로 불러왔습니다.');
-        },
-        error: function () {
-          showAlert('데이터 로드 실패', 'danger');
-        },
-        complete: function () {
-          $('#loadingIndicator').hide();
-        }
-      });
-    }
-
-    $(document).ready(function () {
-      loadUserData();
-
-      $('#searchInput').on('input', function () {
-        currentPage = 1;
-        renderTable();
-      });
-
-      $('#refreshBtn').click(loadUserData);
-    });
-  </script>
+  <script src="print.js"></script>
 </body>
 </html>
