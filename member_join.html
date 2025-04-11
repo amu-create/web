@@ -7,12 +7,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
-      --primary-color: #6a11cb;
-      --secondary-color: #2575fc;
-      --accent-color: #7f00ff;
-      --bg-color: #f3f4f6;
+      --primary-color: #ff00cc;
+      --secondary-color: #3333ff;
+      --accent-color: #00ffcc;
+      --bg-color: #000000;
       --white: #ffffff;
-      --text: #1f2937;
+      --text: #f5f5f5;
     }
 
     * {
@@ -23,125 +23,126 @@
     }
 
     body {
-      background: radial-gradient(circle, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+      background-size: 600% 600%;
+      animation: backgroundAnimation 10s ease infinite;
       color: var(--text);
       min-height: 100vh;
-      padding: 4rem 1rem;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .container {
-      background: var(--white);
-      border-radius: 30px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      padding: 3rem 3.5rem;
-      width: 100%;
-      max-width: 800px;
-      position: relative;
+    @keyframes backgroundAnimation {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
 
-    .container::before {
-      content: "";
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: conic-gradient(var(--primary-color), var(--secondary-color));
-      top: -100px;
-      left: -100px;
-      border-radius: 50%;
-      z-index: -1;
-      opacity: 0.3;
+    .container {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 30px;
+      box-shadow: 0 0 40px var(--accent-color), 0 0 80px var(--primary-color);
+      padding: 4rem 3rem;
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+      animation: flicker 2s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { box-shadow: 0 0 20px var(--accent-color); }
+      100% { box-shadow: 0 0 40px var(--primary-color), 0 0 80px var(--secondary-color); }
     }
 
     h1 {
       text-align: center;
-      font-size: 2.5rem;
-      color: var(--accent-color);
-      margin-bottom: 2.5rem;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      font-size: 3rem;
+      background: linear-gradient(90deg, var(--accent-color), var(--white));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: pulseText 3s infinite;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { text-shadow: 0 0 10px var(--accent-color); }
+      50% { text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--secondary-color); }
     }
 
     label {
-      font-weight: 600;
-      display: block;
+      font-weight: bold;
       margin-top: 1.5rem;
+      display: block;
     }
 
     input, select, textarea {
       width: 100%;
-      padding: 0.9rem 1rem;
+      padding: 1rem;
       margin-top: 0.5rem;
-      border: 1px solid #ccc;
+      border: none;
       border-radius: 15px;
-      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      box-shadow: inset 0 0 10px var(--accent-color);
       transition: 0.3s;
     }
 
     input:focus, select:focus, textarea:focus {
       outline: none;
-      border-color: var(--accent-color);
-      box-shadow: 0 0 0 4px rgba(127, 0, 255, 0.2);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px var(--primary-color), 0 0 30px var(--accent-color);
     }
 
     .id-check-wrap {
       display: flex;
-      align-items: center;
       gap: 1rem;
     }
 
-    .btn-check {
-      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    .btn-check, .btn-save, .btn-cancel {
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
       color: white;
-      padding: 0.7rem 1.2rem;
+      padding: 0.8rem 1.5rem;
       border: none;
       border-radius: 20px;
-      cursor: pointer;
       font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--secondary-color);
+      transition: 0.3s;
+    }
+
+    .btn-check:hover, .btn-save:hover, .btn-cancel:hover {
+      transform: scale(1.1) rotate(1deg);
+      box-shadow: 0 0 30px var(--accent-color), 0 0 50px var(--primary-color);
     }
 
     .radio-group, .checkbox-group {
       display: flex;
-      flex-wrap: wrap;
       gap: 1rem;
+      flex-wrap: wrap;
       margin-top: 0.5rem;
     }
 
     .form-actions {
-      margin-top: 2.5rem;
+      margin-top: 3rem;
       text-align: center;
     }
 
-    .btn-save, .btn-cancel {
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      border-radius: 25px;
-      border: none;
-      cursor: pointer;
-      margin: 0.5rem;
-      transition: 0.3s;
-    }
-
-    .btn-save {
-      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-      color: white;
-    }
-
-    .btn-cancel {
-      background: #e5e7eb;
-      color: #111827;
-    }
-
-    .btn-save:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    /* 배경 입자 효과 */
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
     }
   </style>
 </head>
 <body>
+  <div id="particles-js"></div>
   <div class="container">
-    <h1>회원 가입</h1>
+    <h1>🔥 회원 가입 폭발 🔥</h1>
     <form>
       <label for="userid">ID</label>
       <div class="id-check-wrap">
@@ -201,13 +202,37 @@
       </select>
 
       <div class="form-actions">
-        <button type="submit" class="btn-save">저장</button>
-        <button type="reset" class="btn-cancel">취소</button>
+        <button type="submit" class="btn-save">💾 저장</button>
+        <button type="reset" class="btn-cancel">❌ 취소</button>
       </div>
     </form>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        color: { value: ["#ffffff", "#ff00cc", "#00ffff"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+        move: { enable: true, speed: 3 }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+
     function checkDuplicateId() {
       const id = document.getElementById("userid").value;
       const dummyIds = ["admin", "test", "user"];
