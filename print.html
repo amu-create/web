@@ -2,25 +2,28 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>회원 정보 테이블</title>
+  <title>이용자 정보</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
-    table {
-      border-collapse: collapse;
-      width: 500px;
-      margin: 30px auto;
+    body {
       font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 60%;
     }
     th, td {
       border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
+      padding: 12px;
     }
     th {
-      background-color: #f5f5f5;
+      background-color: #f2f2f2;
     }
     caption {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
       margin-bottom: 10px;
     }
@@ -37,19 +40,18 @@
       </tr>
     </thead>
     <tbody>
-      <!-- 여기 AJAX로 채워짐 -->
+      <!-- 여기 jQuery로 데이터가 들어올 예정 -->
     </tbody>
   </table>
 
   <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
       $.ajax({
-        url: 'url: 'https://amu-create.github.io/web/members.json'
-', // ← 네 GitHub 주소 맞게 바꿔
+        url: 'https://amu-create.github.io/web/members.json',  // ← members.json 주소 정확히!
         method: 'GET',
         dataType: 'json',
-        success: function(data) {
-          data.forEach(function(user) {
+        success: function (data) {
+          data.forEach(function (user) {
             $('#userTable tbody').append(`
               <tr>
                 <td>${user.id}</td>
@@ -58,8 +60,8 @@
             `);
           });
         },
-        error: function() {
-          alert('회원 정보를 불러오는 데 실패했습니다.');
+        error: function () {
+          $('#userTable tbody').append('<tr><td colspan="2">데이터를 불러오지 못했습니다.</td></tr>');
         }
       });
     });
