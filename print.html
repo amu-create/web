@@ -6,25 +6,159 @@
   <title>이용자 정보 관리 시스템</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f8f9fa; }
-    .container { max-width: 960px; margin: 0 auto; padding: 2rem; }
-    h1 { text-align: center; color: #4a6cf7; margin-bottom: 1rem; }
-    .search-container { display: flex; justify-content: space-between; margin-bottom: 1rem; gap: 1rem; flex-wrap: wrap; }
-    .search-input { flex-grow: 1; padding: 0.5rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 5px; }
-    .btn { padding: 0.5rem 1rem; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
-    .btn-primary { background-color: #4a6cf7; color: white; }
-    .btn-secondary { background-color: #e2e6ea; color: #333; }
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: white; }
-    th, td { padding: 0.75rem; border-bottom: 1px solid #ccc; text-align: left; }
-    th { background-color: #f1f3f5; }
-    .pagination { display: flex; justify-content: center; margin-top: 1rem; list-style: none; padding: 0; }
-    .pagination li { margin: 0 5px; }
-    .pagination a { display: block; padding: 0.5rem 0.75rem; border-radius: 5px; text-decoration: none; color: #333; background: #e2e6ea; }
-    .pagination a.active { background: #4a6cf7; color: white; }
-    .loader { text-align: center; padding: 1rem; }
-    .alert { display: none; padding: 1rem; margin-bottom: 1rem; border-radius: 5px; }
-    .alert-success { background-color: #d4edda; color: #155724; }
-    .alert-danger { background-color: #f8d7da; color: #721c24; }
+    :root {
+      --primary-color: #4a6cf7;
+      --secondary-color: #6a11cb;
+      --gradient: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
+      --light-bg: #f8f9fa;
+      --dark-text: #343a40;
+      --border-radius: 10px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: var(--primary-color);
+    }
+
+    .search-container {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .btn {
+      padding: 0.75rem 1.25rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #e2e6ea;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: var(--shadow);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f3f5;
+    }
+
+    tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    .action-btn {
+      border: none;
+      padding: 0.4rem 0.8rem;
+      margin-right: 0.3rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .edit-btn {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .delete-btn {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .pagination li {
+      margin: 0 5px;
+    }
+
+    .pagination a {
+      display: block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #333;
+      background: #e2e6ea;
+    }
+
+    .pagination a.active {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .alert {
+      display: none;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+    }
+
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    .loader {
+      text-align: center;
+      padding: 1rem;
+    }
   </style>
 </head>
 <body>
