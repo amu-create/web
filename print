@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원 정보 테이블</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 500px;
+      margin: 30px auto;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f5f5f5;
+    }
+    caption {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <table id="userTable">
+    <caption>이용자 정보</caption>
+    <thead>
+      <tr>
+        <th>아이디</th>
+        <th>전화번호</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 여기 AJAX로 채워짐 -->
+    </tbody>
+  </table>
+
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: 'https://amu-create.github.io/web/member.json', // ← 네 GitHub 주소 맞게 바꿔
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          data.forEach(function(user) {
+            $('#userTable tbody').append(`
+              <tr>
+                <td>${user.id}</td>
+                <td>${user.phone}</td>
+              </tr>
+            `);
+          });
+        },
+        error: function() {
+          alert('회원 정보를 불러오는 데 실패했습니다.');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
