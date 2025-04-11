@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>회원가입</title>
+  <title>지옥의 회원가입</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary-color: #ff00cc;
       --secondary-color: #3333ff;
       --accent-color: #00ffcc;
-      --bg-color: #000000;
-      --white: #ffffff;
+      --bg-color: #000;
+      --white: #fff;
       --text: #f5f5f5;
     }
 
@@ -19,20 +20,19 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Orbitron', sans-serif;
     }
 
     body {
-      background: radial-gradient(circle at center, var(--primary-color), var(--secondary-color), var(--accent-color));
-      background-size: 400% 400%;
-      animation: rainbow 6s ease infinite, shake 2s infinite;
+      background: radial-gradient(circle, var(--primary-color), var(--secondary-color), var(--accent-color));
+      background-size: 800% 800%;
+      animation: rainbow 10s ease infinite, shake 2s infinite alternate;
       color: var(--text);
       min-height: 100vh;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      perspective: 1000px;
     }
 
     @keyframes rainbow {
@@ -42,20 +42,22 @@
     }
 
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-2px); }
-      75% { transform: translateX(2px); }
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(3px, -2px); }
+      50% { transform: translate(-3px, 2px); }
+      75% { transform: translate(2px, 3px); }
     }
 
     .container {
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(20px);
       border-radius: 30px;
-      box-shadow: 0 0 50px var(--accent-color), 0 0 100px var(--primary-color);
       padding: 4rem 3rem;
-      width: 100%;
       max-width: 900px;
-      transform: rotateY(10deg);
-      animation: spinContainer 8s linear infinite;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 0 60px #ff00cc, 0 0 100px #00ffcc;
+      animation: spinContainer 10s linear infinite;
     }
 
     @keyframes spinContainer {
@@ -64,17 +66,18 @@
     }
 
     h1 {
-      text-align: center;
       font-size: 3rem;
-      background: linear-gradient(90deg, var(--accent-color), var(--white));
+      text-align: center;
+      background: linear-gradient(90deg, #ff0, #0ff, #f0f);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: pulseText 1.5s infinite alternate;
+      animation: glitch 2s infinite;
     }
 
-    @keyframes pulseText {
-      0% { text-shadow: 0 0 10px var(--accent-color); }
-      100% { text-shadow: 0 0 40px var(--primary-color), 0 0 70px var(--secondary-color); }
+    @keyframes glitch {
+      0% {text-shadow: 1px 0 red, -1px 0 blue;}
+      50% {text-shadow: 2px 2px lime, -2px -2px magenta;}
+      100% {text-shadow: -1px 0 red, 1px 0 blue;}
     }
 
     label {
@@ -91,37 +94,54 @@
       border-radius: 15px;
       background: rgba(255, 255, 255, 0.1);
       color: var(--white);
-      box-shadow: inset 0 0 10px var(--accent-color);
+      box-shadow: 0 0 15px #00ffcc inset;
       transition: 0.3s;
+      animation: bounce 2s infinite alternate;
     }
 
     input:focus, select:focus, textarea:focus {
       outline: none;
       background: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 0 15px var(--primary-color), 0 0 35px var(--accent-color);
+      box-shadow: 0 0 30px #ff00cc, 0 0 60px #00ffcc;
       transform: scale(1.05);
     }
 
-    .id-check-wrap {
-      display: flex;
-      gap: 1rem;
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-5px); }
     }
 
     .btn-check, .btn-save, .btn-cancel {
-      background: repeating-linear-gradient(45deg, var(--primary-color), var(--secondary-color) 10px);
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 20px;
+      margin-top: 1rem;
+      padding: 1rem 2rem;
       font-weight: bold;
+      border: none;
+      border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 0 20px var(--secondary-color);
-      animation: flick 1s infinite alternate;
+      background: repeating-linear-gradient(45deg, #ff00cc, #00ffff 10px);
+      color: white;
+      box-shadow: 0 0 15px white;
+      animation: hue 3s linear infinite, flying 5s infinite alternate;
     }
 
-    @keyframes flick {
+    @keyframes hue {
       0% { filter: hue-rotate(0deg); }
       100% { filter: hue-rotate(360deg); }
+    }
+
+    @keyframes flying {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-30px) rotate(360deg); }
+    }
+
+    #particles-js, #iconRain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
     }
 
     .radio-group, .checkbox-group {
@@ -135,27 +155,17 @@
       margin-top: 3rem;
       text-align: center;
     }
-
-    #particles-js {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -2;
-    }
   </style>
 </head>
 <body>
   <div id="particles-js"></div>
+  <div id="iconRain"></div>
   <div class="container">
-    <h1>🌀 광기 회원 가입 🧨</h1>
+    <h1>☠️ 미친 회원가입 ☠️</h1>
     <form>
       <label for="userid">ID</label>
-      <div class="id-check-wrap">
-        <input type="text" id="userid" placeholder="아이디" required />
-        <button type="button" class="btn-check" onclick="checkDuplicateId()">중복확인</button>
-      </div>
+      <input type="text" id="userid" placeholder="아이디" required />
+      <button type="button" class="btn-check" onclick="checkDuplicateId()">중복확인</button>
       <label for="password">Password</label>
       <input type="password" id="password" required />
       <label for="confirmPassword">암호 다시 입력</label>
@@ -196,8 +206,8 @@
         <option value="coupang">쿠팡</option>
       </select>
       <div class="form-actions">
-        <button type="submit" class="btn-save">🚀 저장</button>
-        <button type="reset" class="btn-cancel">💣 취소</button>
+        <button type="submit" class="btn-save">🔥 저장</button>
+        <button type="reset" class="btn-cancel">🧨 취소</button>
       </div>
     </form>
   </div>
@@ -205,13 +215,13 @@
   <script>
     particlesJS("particles-js", {
       particles: {
-        number: { value: 100 },
-        color: { value: ["#ffffff", "#ff00cc", "#00ffff"] },
-        shape: { type: "edge" },
-        opacity: { value: 0.6 },
-        size: { value: 4 },
-        line_linked: { enable: true, distance: 120, color: "#ffffff", opacity: 0.5, width: 2 },
-        move: { enable: true, speed: 4 }
+        number: { value: 120 },
+        color: { value: ["#fff", "#ff00cc", "#00ffff"] },
+        shape: { type: "star" },
+        size: { value: 3 },
+        opacity: { value: 0.7 },
+        line_linked: { enable: true, distance: 100, color: "#fff", opacity: 0.5, width: 2 },
+        move: { enable: true, speed: 3 }
       },
       interactivity: {
         events: {
@@ -219,8 +229,8 @@
           onclick: { enable: true, mode: "push" }
         },
         modes: {
-          grab: { distance: 200, line_linked: { opacity: 1 } },
-          push: { particles_nb: 8 }
+          grab: { distance: 150, line_linked: { opacity: 1 } },
+          push: { particles_nb: 5 }
         }
       },
       retina_detect: true
@@ -236,6 +246,32 @@
         alert("사용 가능한 ID입니다.");
       }
     }
+
+    // 🌧 아이콘 비 효과
+    const rain = document.getElementById("iconRain");
+    setInterval(() => {
+      const i = document.createElement("i");
+      i.className = "fas fa-star";
+      i.style.position = "absolute";
+      i.style.left = Math.random() * window.innerWidth + "px";
+      i.style.top = "-20px";
+      i.style.color = ["#ff0", "#f0f", "#0ff", "#fff"][Math.floor(Math.random()*4)];
+      i.style.fontSize = `${Math.random() * 24 + 12}px`;
+      i.style.animation = `drop ${Math.random() * 5 + 3}s linear forwards`;
+      rain.appendChild(i);
+      setTimeout(() => { i.remove(); }, 8000);
+    }, 300);
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes drop {
+        to {
+          transform: translateY(${window.innerHeight + 50}px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
