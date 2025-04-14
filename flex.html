@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flexbox 회원가입</title>
+  <title>Flexbox 회원가입 + 숫자 박스</title>
   <style>
     * {
       box-sizing: border-box;
@@ -90,9 +90,37 @@
       background-color: #0056b3;
     }
 
+    .number-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .number-box {
+      flex: 1 1 calc(10% - 0.5rem); /* 10개를 한 줄에 맞춤 (마진 보정) */
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+      font-weight: bold;
+    }
+
     @media (max-width: 768px) {
       form {
         grid-template-columns: 1fr;
+      }
+
+      .number-box {
+        flex: 1 1 calc(20% - 0.5rem); /* 작은 화면에서는 5개씩 줄바꿈 */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .number-box {
+        flex: 1 1 calc(33.33% - 0.5rem); /* 더 작을 땐 3개씩 줄바꿈 */
       }
     }
   </style>
@@ -135,6 +163,19 @@
         </div>
         <button type="submit">가입하기</button>
       </form>
+
+      <div class="number-grid">
+        <div class="number-box">1</div>
+        <div class="number-box">2</div>
+        <div class="number-box">3</div>
+        <div class="number-box">4</div>
+        <div class="number-box">5</div>
+        <div class="number-box">6</div>
+        <div class="number-box">7</div>
+        <div class="number-box">8</div>
+        <div class="number-box">9</div>
+        <div class="number-box">10</div>
+      </div>
     </div>
   </div>
 </body>
