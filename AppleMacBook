@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacBook Pro - Apple</title>
+    <style>
+        /* 기본 스타일 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #f5f5f7;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        /* 헤더 스타일 */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 980px;
+            width: 100%;
+            padding: 0 22px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 10px;
+        }
+        
+        nav ul li a {
+            color: #f5f5f7;
+            text-decoration: none;
+            font-size: 12px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 1;
+        }
+        
+        /* 리본 섹션 */
+        .ribbon {
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            text-align: center;
+            padding: 12px;
+            margin-top: 48px;
+        }
+        
+        .ribbon a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        /* 히어로 섹션 */
+        .hero {
+            text-align: center;
+            padding: 100px 0 40px;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+        
+        .hero-image {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .intelligence-badge {
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        
+        .cta-container {
+            margin: 40px 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #0071e3;
+            color: white;
+            border-radius: 980px;
+            padding: 12px 22px;
+            text-decoration: none;
+            font-size: 17px;
+            margin-right: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #0077ED;
+        }
+        
+        .cta-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        
+        .price {
+            font-size: 17px;
+            margin-top: 10px;
+        }
+        
+        /* 하이라이트 섹션 */
+        .highlights {
+            position: relative;
+            padding: 100px 0;
+        }
+        
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .gallery-item {
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 100px;
+            text-align: center;
+        }
+        
+        .gallery-item h3 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .gallery-item p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 성능 섹션 */
+        .performance {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .performance h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .performance p {
+            font-size: 24px;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .chip-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 80px;
+        }
+        
+        .chip-card {
+            background-color: #1d1d1f;
+            border-radius: 18px;
+            padding: 40px;
+            width: 300px;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+        
+        .chip-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .chip-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .chip-card p {
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+        
+        .spec {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .spec-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            background-color: #0071e3;
+            border-radius: 50%;
+        }
+        
+        /* 배터리 섹션 */
+        .battery {
+            padding: 100px 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .battery-content {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 100%;
+        }
+        
+        .battery h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .battery p {
+            font-size: 24px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat h3 {
+            font-size: 56px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .stat p {
+            font-size: 17px;
+        }
+        
+        /* 애플 인텔리전스 섹션 */
+        .intelligence {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .intelligence h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .intelligence p {
+            font-size: 24px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature {
+            width: 300px;
+            text-align: center;
+        }
+        
+        .feature img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .feature p {
+            font-size: 17px;
+        }
+        
+        /* 푸터 */
+        footer {
+            background-color: #1d1d1f;
+            padding: 40px 0;
+            font-size: 12px;
+            color: #86868b;
+            text-align: center;
+        }
+        
+        footer .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+        
+        footer .links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        footer .link-column {
+            width: 160px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        footer h3 {
+            font-size: 12px;
+            margin-bottom: 10px;
+            color: #f5f5f7;
+        }
+        
+        footer ul {
+            list-style: none;
+        }
+        
+        footer ul li {
+            margin-bottom: 8px;
+        }
+        
+        footer a {
+            color: #86868b;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: #f5f5f7;
+        }
+        
+        .legal {
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero h2 {
+                font-size: 21px;
+            }
+            
+            .gallery-item h3 {
+                font-size: 32px;
+            }
+            
+            .gallery-item p {
+                font-size: 19px;
+            }
+            
+            .performance h2, .battery h2, .intelligence h2 {
+                font-size: 32px;
+            }
+            
+            .performance p, .battery p, .intelligence p {
+                font-size: 19px;
+            }
+            
+            .stat h3 {
+                font-size: 36px;
+            }
+            
+            .chip-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <svg height="44" viewBox="0 0 14 44" width="14" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m13.0729 17.6825a3.61 3.61 0 0 0 -1.7248 3.0365 3.5132 3.5132 0 0 0 2.1379 3.2223 8.394 8.394 0 0 1 -1.0948 2.2618c-.6816.9812-1.3943 1.9623-2.4787 1.9623s-1.3633-.63-2.613-.63c-1.2187 0-1.6525.6507-2.644.6507s-1.6834-.9089-2.4787-2.0243a9.7842 9.7842 0 0 1 -1.6628-5.2776c0-3.0984 2.014-4.7405 3.9969-4.7405 1.0535 0 1.9314.6919 2.5924.6919.63 0 1.6112-.7333 2.8092-.7333a3.7579 3.7579 0 0 1 3.1604 1.5705zm-3.7284-2.8918a3.5615 3.5615 0 0 0 .8469-2.22 1.5353 1.5353 0 0 0 -.031-.32 3.5686 3.5686 0 0 0 -2.3445 1.2083 3.4629 3.4629 0 0 0 -.8779 2.1585 1.419 1.419 0 0 0 .031.2892 1.19 1.19 0 0 0 .2169.0207 3.0935 3.0935 0 0 0 2.1586-1.1367z" fill="#f5f5f7"/>
+                </svg>
+            </a>
+            <ul>
+                <li><a href="#">스토어</a></li>
+                <li><a href="#">Mac</a></li>
+                <li><a href="#">iPad</a></li>
+                <li><a href="#">iPhone</a></li>
+                <li><a href="#">Watch</a></li>
+                <li><a href="#">AirPods</a></li>
+                <li><a href="#">TV 및 홈</a></li>
+                <li><a href="#">엔터테인먼트</a></li>
+                <li><a href="#">액세서리</a></li>
+                <li><a href="#">고객지원</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="ribbon">
+            <p>MacBook Pro를 교육 할인으로 구매하세요.* <a href="#">쇼핑하기</a></p>
+        </div>
+
+        <section class="hero">
+            <h1>MacBook Pro</h1>
+            <h2>진지한 스마트 업그레이드.</h2>
+            <img src="/api/placeholder/1200/600" alt="MacBook Pro" class="hero-image">
+            <img src="/api/placeholder/500/80" alt="Apple Intelligence를 위해 제작" class="intelligence-badge">
+            <div class="cta-container">
+                <a href="#" class="cta-button">구입하기</a>
+                <a href="#" class="cta-link">보상 판매</a>
+            </div>
+            <p class="price">₩1,599부터 또는 월 ₩133.25(12개월)**</p>
+        </section>
+
+        <section class="highlights">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <h3>Apple Intelligence를 위해 제작</h3>
+                    <p>개인적이고, 비공개적이며, 강력합니다.<sup>1</sup></p>
+                    <img src="/api/placeholder/1200/800" alt="Apple Intelligence 예시" class="gallery-image">
+                </div>
+                <div class="gallery-item">
+                    <h3>M4, M4 Pro, M4 Max</h3>
+                    <p>가장 집약적인 작업을 위해 최대 20배 더 빠릅니다.<sup>2</sup></p>
+                    <img src="/api/placeholder/1200/800" alt="M4 칩" class="gallery-image">
+                </div>
+                <div class="gallery-item">
+                    <h3>Mac 역사상 가장 긴 배터리 수명</h3>
+                    <p>최대 24시간.<sup>3</sup></p>
+                    <img src="/api/placeholder/1200/800" alt="배터리 수명" class="gallery-image">
+                </div>
+                <div class="gallery-item">
+                    <h3>Liquid Retina XDR 디스플레이</h3>
+                    <p>믿을 수 없을 정도로 밝습니다.</p>
+                    <img src="/api/placeholder/1200/800" alt="XDR 디스플레이" class="gallery-image">
+                </div>
+                <div class="gallery-item">
+                    <h3>새로운 12MP 센터 스테이지 카메라</h3>
+                    <p>항상 전면과 중앙에 있을 수 있도록 유지합니다.</p>
+                    <img src="/api/placeholder/1200/800" alt="센터 스테이지 카메라" class="gallery-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="performance">
+            <h2>이전에 본 적 없는 속도</h2>
+            <p>프로 노트북을 위해 만들어진 가장 진보된 칩 라인업입니다. 단일 및 다중 스레드 CPU 성능이 뛰어나고, 통합 메모리가 더 빨라졌으며, 향상된 기계 학습 가속기를 갖추고 있습니다.</p>
+            
+            <div class="chip-container">
+                <div class="chip-card">
+                    <h3>M4</h3>
+                    <p>M1보다 최대 3.4배 더 빠름<sup>11</sup></p>
+                    <div class="specs">
+                        <div class="spec">
+                            <div class="spec-icon"></div>
+                            <span>10코어 CPU</span>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon"></div>
+                            <span>10코어 GPU</span>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon"></div>
+                            <span>최대 32GB 통합 메모리</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chip-card">
+                    <h3>M4 Pro</h3>
+                    <p>M1 Pro보다 최대 3배 더 빠름<sup>12</sup></p>
+                    <div class="specs">
+                        <div class="spec">
+                            <div class="spec-icon"></div>
+                            <span>최대 14코어 CPU</span>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon"></div>
+                            <span>최대 20코어 GPU</span>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon"></div>
+                            <span>최대 48GB 통합 메모리</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chip-card">
+                    <h3>M4 Max</h3>
+                    <p>M1 Max보다 최대 3.5배 더 빠름<sup>13</sup></p>
+                    <div class="specs">
+                        <div class="spec">
+                            <div class="spec-icon"></div>
+                            <span>최대 16코어 CPU</span>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon"></div>
+                            <span>최대 40코어 GPU</span>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon"></div>
+                            <span>최대 128GB 통합 메모리</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <img src="/api/placeholder/1200/600" alt="M4 칩 성능" class="gallery-image">
+        </section>
+
+        <section class="battery">
+            <div class="battery-content">
+                <h2>Mac 역사상 가장 긴 배터리 수명</h2>
+                <p>모든 일에 하루 종일 몰두할 수 있습니다.</p>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <h3>24시간</h3>
+                        <p>배터리 수명<sup>3</sup></p>
+                    </div>
+                    <div class="stat">
+                        <h3>14시간</h3>
+                        <p>인텔 기반 MacBook Pro보다 더 오래<sup>5</sup></p>
+                    </div>
+                </div>
+            </div>
+            <img src="/api/placeholder/1200/800" alt="배터리 성능" class="gallery-image">
+        </section>
+
+        <section class="intelligence">
+            <h2>Apple Intelligence</h2>
+            <p>천재적인 작업</p>
+            <p>Apple Intelligence는 글을 쓰고, 자신을 표현하고, 일을 쉽게 처리할 수 있도록 도와주는 개인 인텔리전스 시스템입니다. 획기적인 개인 정보 보호 기능으로 Apple조차도 사용자의 데이터에 접근할 수 없다는 사실에 마음의 평화를 얻을 수 있습니다.<sup>1</sup></p>
+            
+            <a href="#" class="cta-link">Apple Intelligence에 대해 더 알아보기</a>
+            
+            <div class="features">
+                <div class="feature">
+                    <img src="/api/placeholder/300/200" alt="글쓰기 도구">
+                    <h3>글쓰기 도구</h3>
+                    <p>글을 교정하고 어조와 표현이 완벽해질 때까지 다양한 버전으로 다시 작성할 수 있으며, 클릭 한 번으로 선택한 텍스트를 요약할 수 있습니다.</p>
+                </div>
+                <div class="feature">
+                    <img src="/api/placeholder/300/200" alt="시리">
+                    <h3>시리</h3>
+                    <p>완전히 새로운 디자인, 더 풍부한 언어 이해력, 그리고 편리할 때마다 시리에게 입력할 수 있는 기능을 갖춰 시리와의 의사소통이 그 어느 때보다 자연스러워졌습니다.</p>
+                </div>
+                <div class="feature">
+                    <img src="/api/placeholder/300/200" alt="우선순위 메시지">
+                    <h3>우선순위 메시지</h3>
+                    <p>한 시간 내에 있을 회의 초대장이나 비행기 탑승 확인 알림과 같은 시간에 민감한 메시지를 받은편지함 상단에서 확인할 수 있습니다. 또한 Mail은 메시지를 빠르게 요약하는 데 도움을 줍니다.</p>
+                </div>
+            </div>
+            
+            <img src="/api/placeholder/1200/600" alt="개인정보 보호" class="gallery-image">
+            
+            <h3>뛰어난 능력에는 뛰어난 개인정보 보호가 따릅니다.</h3>
+            <p>Apple Intelligence는 모든 단계에서 개인정보를 보호하도록 설계되었습니다. 온디바이스 처리를 통해 Mac의 핵심에 통합되어 있습니다. 따라서 개인정보를 수집하지 않고도 개인정보를 인식할 수 있습니다.</p>
+            <p>또한 획기적인 Private Cloud Compute를 통해 Apple Intelligence는 더 복잡한 요청을 처리하기 위해 Apple 실리콘에서 실행되는 더 큰 서버 기반 모델을 활용하면서도 개인정보를 보호할 수 있습니다.</p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="links">
+                <div class="link-column">
+                    <h3>쇼핑 및 알아보기</h3>
+                    <ul>
+                        <li><a href="#">스토어</a></li>
+                        <li><a href="#">Mac</a></li>
+                        <li><a href="#">iPad</a></li>
+                        <li><a href="#">iPhone</a></li>
+                        <li><a href="#">Watch</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>서비스</h3>
+                    <ul>
+                        <li><a href="#">Apple Music</a></li>
+                        <li><a href="#">Apple TV+</a></li>
+                        <li><a href="#">Apple Arcade</a></li>
+                        <li><a href="#">iCloud</a></li>
+                        <li><a href="#">Apple Books</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>계정</h3>
+                    <ul>
+                        <li><a href="#">Apple ID 관리</a></li>
+                        <li><a href="#">Apple Store 계정</a></li>
+                        <li><a href="#">iCloud.com</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Apple Store</h3>
+                    <ul>
+                        <li><a href="#">매장 찾기</a></li>
+                        <li><a href="#">Genius Bar</a></li>
+                        <li><a href="#">Today at Apple</a></li>
+                        <li><a href="#">Apple 캠프</a></li>
+                        <li><a href="#">Apple Store 앱</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>비즈니스</h3>
+                    <ul>
+                        <li><a href="#">Apple과 비즈니스</a></li>
+                        <li><a href="#">비즈니스를 위한 제품 쇼핑하기</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>교육</h3>
+                    <ul>
+                        <li><a href="#">Apple과 교육</a></li>
+                        <li><a href="#">초중고용 제품 쇼핑하기</a></li>
+                        <li><a href="#">대학 생활을 위한 제품 쇼핑하기</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal">
+                <p>* 교육 할인은 대학생, 학부모, 교사 및 교직원이 이용할 수 있습니다.</p>
+                <p>** 할부금 계산은 할부 금융 서비스 이용 가능 여부에 따라 달라집니다.</p>
+                <p>1. Apple Intelligence는 세계 일부 지역에서 iOS 18.1, iPadOS 18.1, macOS Sequoia(15.1)에서만 사용 가능하며 영어(미국)만 지원됩니다.</p>
+                <p>더 많은 내용을 살펴보려면 <a href="#">apple.com/kr/legal/warranty/</a>를 참조하십시오.</p>
+                <p>Copyright © 2025 Apple Inc. 모든 권리 보유.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
