@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex 레이아웃 페이지</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column; /* 세로 구조 */
+      height: 100vh;
+    }
+
+    header, footer {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .wrapper {
+      display: flex;
+      flex: 1;
+      flex-direction: row; /* 콘텐츠는 가로 정렬 */
+      min-height: 0;
+    }
+
+    aside {
+      background-color: #f4f4f4;
+      padding: 1rem;
+      width: 200px;
+      min-width: 150px;
+    }
+
+    main {
+      flex: 1;
+      padding: 1rem;
+      background-color: #fff;
+      overflow-y: auto;
+    }
+
+    footer {
+      background-color: #222;
+      color: #aaa;
+    }
+
+    /* 블록 요소 안에 인라인 요소 */
+    .welcome {
+      margin-bottom: 1rem;
+    }
+
+    .welcome span {
+      font-weight: bold;
+      color: royalblue;
+    }
+
+    /* 플렉스 데모 */
+    .flex-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .flex-item {
+      background: #ddd;
+      padding: 1rem;
+      flex: 1 1 calc(33.33% - 1rem);
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .wrapper {
+        flex-direction: column;
+      }
+
+      aside {
+        width: 100%;
+      }
+
+      .flex-item {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Flexbox 레이아웃 예제</h1>
+    <nav>
+      <a href="#" style="color:white; margin: 0 1rem;">Home</a>
+      <a href="#" style="color:white;">About</a>
+    </nav>
+  </header>
+
+  <div class="wrapper">
+    <aside>
+      <h3>사이드바</h3>
+      <ul>
+        <li><a href="#">메뉴1</a></li>
+        <li><a href="#">메뉴2</a></li>
+        <li><a href="#">메뉴3</a></li>
+      </ul>
+    </aside>
+
+    <main>
+      <div class="welcome">
+        <p>안녕하세요, <span>사용자님</span>. 여긴 <strong>메인 콘텐츠</strong> 영역입니다.</p>
+      </div>
+
+      <section>
+        <h2>Flex 레이아웃 박스들</h2>
+        <div class="flex-demo">
+          <div class="flex-item">1</div>
+          <div class="flex-item">2</div>
+          <div class="flex-item">3</div>
+          <div class="flex-item">4</div>
+          <div class="flex-item">5</div>
+          <div class="flex-item">6</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    ⓒ 2025 Flexbox Layout Inc. All rights reserved.
+  </footer>
+
+</body>
+</html>
