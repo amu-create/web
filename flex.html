@@ -3,74 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>회원가입</title>
+  <title>풀스크린 회원가입</title>
   <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f2f2f2;
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 100vw;
       height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #e0e0e0;
     }
 
     .container {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 400px;
+      height: 100%;
+      padding: 3vh 10vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-wrapper {
+      background-color: white;
+      padding: 3rem;
+      width: 100%;
+      max-width: 800px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      overflow-y: auto;
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
-    input {
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 2rem;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    input, select {
       width: 100%;
       padding: 12px;
-      margin-bottom: 1rem;
+      font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 6px;
-      font-size: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
     }
 
     button {
       width: 100%;
-      padding: 12px;
-      background-color: #007bff;
-      border: none;
-      color: white;
+      padding: 14px;
       font-size: 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
       border-radius: 6px;
       cursor: pointer;
+      grid-column: 1 / -1;
     }
 
     button:hover {
       background-color: #0056b3;
     }
 
-    @media (max-width: 480px) {
-      .container {
-        margin: 0 1rem;
-        padding: 1.5rem;
+    @media (max-width: 768px) {
+      form {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>회원가입</h2>
-    <form>
-      <input type="text" placeholder="이름" required />
-      <input type="email" placeholder="이메일" required />
-      <input type="password" placeholder="비밀번호" required />
-      <button type="submit">가입하기</button>
-    </form>
+    <div class="form-wrapper">
+      <h2>회원가입</h2>
+      <form>
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input type="text" id="name" placeholder="이름 입력" required />
+        </div>
+        <div class="form-group">
+          <label for="email">이메일</label>
+          <input type="email" id="email" placeholder="이메일 입력" required />
+        </div>
+        <div class="form-group">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" placeholder="비밀번호 입력" required />
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">비밀번호 확인</label>
+          <input type="password" id="confirm-password" placeholder="비밀번호 다시 입력" required />
+        </div>
+        <div class="form-group">
+          <label for="birth">생년월일</label>
+          <input type="date" id="birth" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">전화번호</label>
+          <input type="tel" id="phone" placeholder="010-1234-5678" />
+        </div>
+        <div class="form-group full-width">
+          <label for="address">주소</label>
+          <input type="text" id="address" placeholder="주소 입력" />
+        </div>
+        <div class="form-group full-width">
+          <label><input type="checkbox" required /> 약관에 동의합니다</label>
+        </div>
+        <button type="submit">가입하기</button>
+      </form>
+    </div>
   </div>
 </body>
 </html>
