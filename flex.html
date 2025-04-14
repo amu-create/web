@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>풀스크린 회원가입</title>
+  <title>Flexbox 회원가입</title>
   <style>
     * {
       box-sizing: border-box;
@@ -21,10 +21,10 @@
     .container {
       width: 100%;
       height: 100%;
-      padding: 3vh 10vw;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: flex;                     /* Flex 적용 */
+      justify-content: center;          /* 주축 (row) 정렬 → 가로 중앙 */
+      align-items: center;              /* 교차축 정렬 → 세로 중앙 */
+      padding: 3vh 5vw;
     }
 
     .form-wrapper {
