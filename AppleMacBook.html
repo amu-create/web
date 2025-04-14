@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en"> {/* Changed lang to 'en' as most Apple sites default based on region */}
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -224,28 +223,90 @@
              top: -1px;
          }
 
-        /* Highlights Carousel Placeholder */
-        .highlights-carousel {
-            padding: 40px 0;
-            /* Basic representation - a real carousel needs JS */
+        /* === 캐러셀 공통 스타일 === */
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden; /* 슬라이드 숨기기 */
+            width: 90%; /* 캐러셀 너비 조정 */
+            margin: 0 auto; /* 가운데 정렬 */
+        }
+
+        .carousel-track {
+            display: flex; /* 슬라이드를 가로로 배치 */
+            transition: transform 0.5s ease-in-out; /* 부드러운 슬라이드 효과 */
+            will-change: transform; /* 성능 최적화 */
+        }
+
+        .carousel-controls {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px; /* Space between items if multiple shown */
-            overflow-x: auto; /* Allow horizontal scroll if needed */
-            padding: 0 20px; /* Add some side padding */
+            margin-top: 20px;
+            gap: 15px; /* 컨트롤 요소 간 간격 */
         }
-        .highlight-item {
+
+        .carousel-controls .dots {
+            display: flex;
+            gap: 10px; /* 점 간 간격 */
+        }
+
+        /* Specific CSS for dot buttons inside controls */
+        .carousel-controls .dots .dot { /* Added .dots scope */
+            width: 8px;
+            height: 8px;
+            background-color: #555;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: none; /* Ensure button default border is removed */
+            padding: 0; /* Ensure button default padding is removed */
+        }
+
+        .carousel-controls .dots .dot.active { /* Added .dots scope */
+            background-color: #f5f5f7;
+        }
+
+        /* Specific CSS for prev/next buttons inside controls */
+        .carousel-controls button.prev,
+        .carousel-controls button.next { /* Target only prev/next buttons */
+            background: none;
+            border: none;
+            color: #a1a1a6;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0 10px;
+            transition: color 0.3s;
+        }
+        .carousel-controls button.prev:hover,
+        .carousel-controls button.next:hover {
+            color: #f5f5f7;
+        }
+        .carousel-controls button.prev:disabled,
+        .carousel-controls button.next:disabled { /* 비활성화된 버튼 */
+            color: #444;
+            cursor: default;
+        }
+
+        /* === 하이라이트 캐러셀 특정 스타일 === */
+        .highlights-carousel { /* Apply padding to the main section */
+             padding-top: 40px;
+             padding-bottom: 40px;
+        }
+
+        .highlights-carousel .carousel-track .highlight-item {
+            min-width: 300px; /* 최소 너비 */
+            width: 30%; /* 데스크탑에서 약 3개 보이도록 */
+            flex-shrink: 0; /* 크기 줄어들지 않도록 */
+            margin: 0 10px; /* 아이템 간 간격 */
+            box-sizing: border-box;
+            /* Add styles for the highlight item content itself */
             background-color: #111; /* Dark card background */
             border-radius: 18px;
             overflow: hidden;
-            min-width: 300px; /* Minimum width for a card */
-            max-width: 45%; /* Max width relative to container */
-            flex-shrink: 0; /* Prevent shrinking */
             text-align: left;
             padding: 30px;
         }
-        .highlight-item img {
+        .highlights-carousel .highlight-item img {
             width: 100%;
             height: 200px; /* Fixed height for placeholder */
             object-fit: cover;
@@ -253,50 +314,46 @@
             border-radius: 10px;
             background-color: #333; /* Placeholder background */
         }
-        .highlight-item h3 {
+        .highlights-carousel .highlight-item h3 {
             font-size: 19px;
             font-weight: 600;
             color: #f5f5f7;
             margin-bottom: 5px;
         }
-         .highlight-item p {
+         .highlights-carousel .highlight-item p {
              font-size: 14px;
              color: #a1a1a6;
              max-width: none;
          }
 
 
-        /* Product Showcase */
-        .product-showcase {
-             padding: 60px 0;
-             background-color: #000; /* Ensure black background */
+        /* === 제품 쇼케이스 캐러셀 특정 스타일 === */
+        .product-showcase { /* Apply padding to the main section */
+             padding-top: 60px;
+             padding-bottom: 60px;
         }
-         .product-showcase img {
+
+        .product-showcase .product-carousel-wrapper {
+            max-width: 800px; /* 최대 너비 설정 */
+            width: 80%; /* 너비 조정 */
+        }
+
+        .product-showcase .product-carousel-track .product-slide {
+            width: 100%; /* 각 슬라이드가 래퍼 너비 전체 차지 */
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .product-showcase .product-carousel-track .product-slide img {
              display: block;
-             width: 80%;
-             max-width: 800px;
-             margin: 0 auto 20px auto;
+             width: 100%; /* 이미지 너비 100% */
+             max-width: 800px; /* 최대 크기 제한 */
+             height: auto;
+             margin: 0 auto 15px auto; /* 아래쪽 여백 */
          }
-         .product-showcase .caption {
+        .product-showcase .product-carousel-track .product-slide .caption {
              font-size: 12px;
              color: #a1a1a6;
              margin-bottom: 20px;
-         }
-         .product-showcase .controls {
-             /* Basic dot indicators */
-             display: flex;
-             justify-content: center;
-             gap: 10px;
-         }
-         .product-showcase .dot {
-             width: 8px;
-             height: 8px;
-             background-color: #555;
-             border-radius: 50%;
-             cursor: pointer;
-         }
-         .product-showcase .dot.active {
-             background-color: #f5f5f7;
          }
 
 
@@ -604,6 +661,18 @@
             section { padding: 60px 20px; } /* Reduce padding on mobile */
             .hero { padding: 60px 20px 40px; min-height: 500px; }
             .hero .product-image { max-width: 80%; margin-top: 20px; margin-bottom: 30px; }
+
+            /* Responsive Carousel Styles */
+            .highlights-carousel .carousel-track .highlight-item {
+                width: 85%; /* 모바일에서 거의 전체 너비 차지 */
+                margin: 0 5px; /* Adjust margin for mobile */
+            }
+            .carousel-wrapper {
+                width: 100%; /* 모바일에서는 꽉 차게 */
+            }
+            .product-showcase .product-carousel-wrapper {
+                width: 90%;
+            }
         }
 
     </style>
@@ -648,7 +717,7 @@
             <a href="#" class="cta-button">Buy</a>
             <p class="price">From $1599 or $133.25/mo. for 12 mo.**</p>
             <!-- Image added via CSS background or kept static -->
-             <img src="/api/placeholder/600/300?text=MacBook+Pro+Hero" alt="MacBook Pro angled view" class="product-image">
+             <img src="https://www.apple.com/v/macbook-pro/am/images/overview/hero/hero_static__d9c05p8is1uu_large.jpg" alt="MacBook Pro angled view" class="product-image">
         </section>
 
         <section class="highlights-intro">
@@ -659,36 +728,83 @@
              </div>
         </section>
 
-        <section class="highlights-carousel">
-             <!-- Static representation of highlight cards -->
-            <div class="highlight-item">
-                 <img src="/api/placeholder/400/200?text=M4+Chips" alt="M4 Chips">
-                <h3>M4, M4 Pro, and M4 Max.</h3>
-                <p>Ready for whatever's impossible.</p>
+        <!-- === 하이라이트 캐러셀 (HTML 위치 수정됨) === -->
+        <section class="highlights-carousel" id="highlightsCarousel">
+            <div class="carousel-wrapper">
+                <div class="carousel-track">
+                    <!-- 슬라이드 아이템 1 -->
+                    <div class="highlight-item">
+                        <img src="https://www.apple.com/v/macbook-pro/am/images/overview/highlights/highlight_chips__f9n1kb1kvj6e_large.jpg" alt="M4 Chips">
+                        <h3>M4, M4 Pro, and M4 Max.</h3>
+                        <p>Ready for whatever's impossible.</p>
+                    </div>
+                    <!-- 슬라이드 아이템 2 -->
+                    <div class="highlight-item">
+                        <img src="https://www.apple.com/v/macbook-pro/am/images/overview/highlights/highlight_display__dxupd8kyz1w2_large.jpg" alt="Liquid Retina XDR display">
+                        <h3>Liquid Retina XDR display.</h3>
+                        <p>The best display ever in a laptop.</p>
+                    </div>
+                    <!-- 슬라이드 아이템 3 -->
+                    <div class="highlight-item">
+                        <img src="https://www.apple.com/v/macbook-pro/am/images/overview/highlights/highlight_battery__fencj0gajlsm_large.jpg" alt="Battery Life">
+                        <h3>Longest battery life ever in a Mac.</h3>
+                        <p>Up to 24 hours.</p>
+                    </div>
+                    <!-- 필요한 경우 여기에 하이라이트 아이템 추가 -->
+                </div>
             </div>
-             <div class="highlight-item">
-                 <img src="/api/placeholder/400/200?text=Eye+Close-up" alt="Video Editing Screen">
-                <h3>Liquid Retina XDR display.</h3>
-                <p>The best display ever in a laptop.</p>
-            </div>
-            <div class="highlight-item">
-                 <img src="/api/placeholder/400/200?text=Battery+Icon" alt="Battery Life">
-                <h3>Longest battery life ever in a Mac.</h3>
-                <p>Up to 24 hours.</p> <!-- Adjusted based on other sections -->
+            <div class="carousel-controls">
+                <button class="prev" aria-label="Previous highlight">‹</button>
+                <div class="dots">
+                    <!-- JS가 점들을 생성 -->
+                </div>
+                <button class="next" aria-label="Next highlight">›</button>
             </div>
         </section>
 
-        <section class="product-showcase">
-             <img src="/api/placeholder/800/450?text=Space+Black+MBP" alt="MacBook Pro 16 inch in Space Black">
-             <p class="caption">MacBook Pro 16” in Space Black</p>
-             <div class="controls">
-                 <span class="dot active"></span>
-                 <span class="dot"></span>
-                 <span class="dot"></span>
-                 <span class="dot"></span>
-                 <span class="dot"></span>
-                 <span class="dot"></span>
-             </div>
+        <!-- === 제품 쇼케이스 캐러셀 (HTML 위치 수정됨) === -->
+        <section class="product-showcase" id="productShowcase">
+            <div class="product-carousel-wrapper carousel-wrapper">
+                <div class="product-carousel-track carousel-track">
+                    <!-- 슬라이드 1 -->
+                    <div class="product-slide">
+                        <img src="https://www.apple.com/v/macbook-pro/am/images/overview/design/design_gallery_1__ejhaxaf09luq_large.jpg" alt="MacBook Pro 16 inch in Space Black">
+                        <p class="caption">MacBook Pro 16” in Space Black</p>
+                    </div>
+                    <!-- 슬라이드 2 -->
+                    <div class="product-slide">
+                        <img src="https://www.apple.com/v/macbook-pro/am/images/overview/design/design_gallery_2__dbcljd9fv1m6_large.jpg" alt="MacBook Pro 16 inch in Silver">
+                        <p class="caption">MacBook Pro 16” in Silver</p>
+                    </div>
+                    <!-- 슬라이드 3 -->
+                    <div class="product-slide">
+                         <img src="https://www.apple.com/v/macbook-pro/am/images/overview/design/design_gallery_3__cp0q6zkukqeu_large.jpg" alt="MacBook Pro 14 inch in Space Black">
+                         <p class="caption">MacBook Pro 14” in Space Black</p>
+                     </div>
+                     <!-- 슬라이드 4 -->
+                     <div class="product-slide">
+                         <img src="https://www.apple.com/v/macbook-pro/am/images/overview/design/design_gallery_4__ej7uf1k35k2a_large.jpg" alt="MacBook Pro 14 inch in Silver">
+                         <p class="caption">MacBook Pro 14” in Silver</p>
+                     </div>
+                     <!-- 슬라이드 5 -->
+                    <div class="product-slide">
+                        <img src="https://www.apple.com/v/macbook-pro/am/images/overview/design/design_gallery_5__ca4cbkhsdzxu_large.jpg" alt="MacBook Pro 16 inch in Space Black Angle">
+                        <p class="caption">MacBook Pro 16” in Space Black</p>
+                    </div>
+                      <!-- 슬라이드 6 -->
+                      <div class="product-slide">
+                          <img src="https://www.apple.com/v/macbook-pro/am/images/overview/design/design_gallery_6__c8q0qrk317m6_large.jpg" alt="MacBook Pro 16 inch in Silver Side">
+                          <p class="caption">MacBook Pro 16” in Silver</p>
+                      </div>
+                </div>
+            </div>
+            <div class="product-carousel-controls carousel-controls">
+                 <button class="prev" aria-label="Previous product image">‹</button>
+                 <div class="dots">
+                     <!-- JS가 6개의 점을 생성 -->
+                 </div>
+                <button class="next" aria-label="Next product image">›</button>
+            </div>
         </section>
 
         <section class="performance">
@@ -874,5 +990,122 @@
             </div>
         </div>
     </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        function setupCarousel(carouselId) {
+            const carouselElement = document.getElementById(carouselId);
+            if (!carouselElement) {
+                console.error(`Carousel element with ID "${carouselId}" not found.`);
+                return; // 캐러셀 요소 없으면 종료
+            }
+
+            const track = carouselElement.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextButton = carouselElement.querySelector('.next');
+            const prevButton = carouselElement.querySelector('.prev');
+            const dotsNav = carouselElement.querySelector('.dots');
+
+            if (!track || !nextButton || !prevButton || !dotsNav || slides.length === 0) {
+                console.error(`Carousel "${carouselId}" is missing essential elements (track, slides, buttons, or dots container).`);
+                return; // 필수 요소 없으면 종료
+            }
+
+            let currentIndex = 0;
+            let slideWidth = slides[0].getBoundingClientRect().width; // 초기 너비 계산
+            let itemMargin = 0; // 아이템 간 margin 초기화
+
+            // 캐러셀 타입에 따라 margin 설정 (하이라이트만)
+            if (carouselId === 'highlightsCarousel') {
+                 // CSS에서 설정한 margin-left + margin-right 값 (예: 10px + 10px = 20px)
+                 itemMargin = parseFloat(getComputedStyle(slides[0]).marginLeft) + parseFloat(getComputedStyle(slides[0]).marginRight);
+                 if (isNaN(itemMargin)) itemMargin = 20; // Fallback if CSS parsing fails
+            }
+
+
+            // 점(dot) 생성 함수
+            function createDots() {
+                dotsNav.innerHTML = ''; // 기존 점 초기화
+                slides.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.classList.add('dot');
+                    if (index === 0) dot.classList.add('active');
+                    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                    dot.addEventListener('click', () => {
+                        moveToSlide(index);
+                    });
+                    dotsNav.appendChild(dot);
+                });
+            }
+
+            // 특정 슬라이드로 이동 함수
+            const moveToSlide = (targetIndex) => {
+                if (targetIndex < 0 || targetIndex >= slides.length) return; // 인덱스 범위 확인
+
+                // 슬라이드 너비 및 마진 재계산 (창 크기 변경 시 대응)
+                slideWidth = slides[0].getBoundingClientRect().width;
+                if (carouselId === 'highlightsCarousel') {
+                     itemMargin = parseFloat(getComputedStyle(slides[0]).marginLeft) + parseFloat(getComputedStyle(slides[0]).marginRight);
+                     if (isNaN(itemMargin)) itemMargin = 20; // Fallback
+                } else {
+                    itemMargin = 0; // 다른 캐러셀은 마진 0
+                }
+
+                // 이동 거리 계산 (슬라이드 너비 + 아이템 간 총 마진)
+                const moveDistance = (slideWidth + itemMargin) * targetIndex;
+
+                track.style.transform = `translateX(-${moveDistance}px)`;
+                updateDots(currentIndex, targetIndex);
+                currentIndex = targetIndex;
+                updateNavButtons();
+            }
+
+            // 점 활성 상태 업데이트 함수
+            const updateDots = (oldIndex, newIndex) => {
+                const dots = Array.from(dotsNav.children);
+                if (dots[oldIndex]) dots[oldIndex].classList.remove('active');
+                if (dots[newIndex]) dots[newIndex].classList.add('active');
+            }
+
+            // 네비게이션 버튼 활성/비활성 업데이트 함수
+            const updateNavButtons = () => {
+                prevButton.disabled = currentIndex === 0;
+                // 하이라이트 캐러셀의 경우, 화면에 여러 개가 보일 수 있으므로
+                // 마지막 슬라이드가 '완전히 보이는' 상태를 기준으로 비활성화할지 결정해야 할 수 있습니다.
+                // 여기서는 간단하게 마지막 인덱스 기준으로 처리합니다.
+                nextButton.disabled = currentIndex === slides.length - 1;
+            }
+
+            // 버튼 이벤트 리스너
+            nextButton.addEventListener('click', () => {
+                moveToSlide(currentIndex + 1);
+            });
+
+            prevButton.addEventListener('click', () => {
+                moveToSlide(currentIndex - 1);
+            });
+
+            // 초기 설정
+            createDots(); // 점 생성
+            updateNavButtons(); // 네비게이션 버튼 초기 상태 설정
+
+            // 창 크기 변경 시 슬라이드 위치 재조정
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    // 현재 인덱스로 다시 이동시켜 위치 및 너비 재계산
+                    moveToSlide(currentIndex);
+                }, 250); // Debounce resize event
+            });
+        }
+
+        // 각 캐러셀 초기화
+        setupCarousel('highlightsCarousel');
+        setupCarousel('productShowcase');
+
+    });
+    </script>
 </body>
 </html>
